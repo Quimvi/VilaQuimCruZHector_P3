@@ -20,6 +20,7 @@ public class Dades extends InDades{
     private final GeneradorVapor generadorVapor;
     private final Reactor reactor;
     private float insercioBarres;
+    private float guanysAcumulats;
 
 
     // Afegir atributs:
