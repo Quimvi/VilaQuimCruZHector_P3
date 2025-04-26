@@ -45,7 +45,7 @@ public class PaginaEconomica extends PaginaBitacola{
     public float getGuanysAcumulats() {
         return guanysAcumulats;
     }
-
+    @Override
     public String toString(){
         return "# Pàgina Econòmica "+"\n- Dia:" + this.getDia() + "\n- Demanda de Potència:" + this.getDemandaPotencia()
                 +"\n-  Potència Generada:" + this.getPotenciaGenerada() +"\n- Demanda de Potència Satisfeta::" + this.getPercentatgePotencia() + "%"

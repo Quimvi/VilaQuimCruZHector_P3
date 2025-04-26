@@ -36,7 +36,7 @@ public class PaginaEstat extends PaginaBitacola{
         return outputTurvina;
     }
 
-
+    @Override
     public String toString(){
         return "# Pàgina Estat "+"\n- Dia:" + this.getDia() + "\n- Inserció Barres:" + this.getInsercioBarres() + "%"
                 +"\n- Output Reactor:" + this.getOutputReactor() + "Graus" + "\n- Output Sistema de Refrigeració:" + this.getOutputSistemaDeRefrigeracio() + "Graus"

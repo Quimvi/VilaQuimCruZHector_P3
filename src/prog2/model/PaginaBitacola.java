@@ -14,4 +14,6 @@ public abstract class PaginaBitacola {
     public int getDia(){
         return this.dia;
     }
+
+    public abstract String toString();
 }

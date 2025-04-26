@@ -21,6 +21,8 @@ public class Dades extends InDades{
     private final Reactor reactor;
     private float insercioBarres;
     private float guanysAcumulats;
+    private Bitacola bitacola;
+    private int dia;
 
 
     // Afegir atributs:
