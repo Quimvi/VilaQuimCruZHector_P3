@@ -5,11 +5,16 @@
 package prog2.model;
 
 import prog2.model.VariableUniforme;
+import prog2.vista.CentralUBException;
+
+import java.util.Iterator;
+import java.util.List;
+
 /**
  *
  * @author Daniel Ortiz
  */
-public class Dades extends InDades{
+public class Dades implements InDades{
     public final static long  VAR_UNIF_SEED = 123;
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
@@ -64,14 +69,98 @@ public class Dades extends InDades{
      * @param demandaPotencia Demanda de potència actual.
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
-          // Completar
+        PaginaEconomica paginaEconomia = new PaginaEconomica(dia,demandaPotencia,calculaPotencia(),PENALITZACIO_EXCES_POTENCIA,guanysAcumulats,reactor,sistemaRefrigeracio,generadorVapor,turbina);
+        this.guanysAcumulats = paginaEconomia.getGuanysAcumulats();
+        return paginaEconomia;
+    }
+
+    public float getInsercioBarres(){
+        return insercioBarres;
+    }
+
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException{
+        if(insercioBarres > 100){
+            throw new CentralUBException("El grau d'inserció de barres ha de ser de 0-100");
+        }else {
+            this.insercioBarres = insercioBarres;
+        }
+    }
+
+    public void activaReactor() throws CentralUBException{
+        reactor.activa();
+    }
+
+    public void desactivaReactor(){
+        reactor.desactiva();
+    }
+
+    public Reactor mostraReactor(){
+        return this.reactor;
+    }
+
+    public void activaBomba(int id) throws CentralUBException{
+        if (id > 3 || id < 0){
+            throw new CentralUBException("El Id ha de ser de 0-3");
+        }else {
+            Iterator<BombaRefrigerant> itr = sistemaRefrigeracio.getLlistaBomba().iterator();
+            while (itr.hasNext()) {
+                BombaRefrigerant bombaRefrigerant = itr.next();
+                if (bombaRefrigerant.getId() == id) {
+                    bombaRefrigerant.activa();
+                }
+            }
+        }
+    }
+
+    public void desactivaBomba(int id){
+        if (id > 3 || id < 0){
+            throw new CentralUBException("El Id ha de ser de 0-3");
+        }else {
+            Iterator<BombaRefrigerant> itr = sistemaRefrigeracio.getLlistaBomba().iterator();
+            while (itr.hasNext()) {
+                BombaRefrigerant bombaRefrigerant = itr.next();
+                if (bombaRefrigerant.getId() == id) {
+                    bombaRefrigerant.desactiva();
+                }
+            }
+        }
+    }
+
+    public SistemaRefrigeracio mostraSistemaRefrigeracio(){
+        return sistemaRefrigeracio;
+    }
+
+    public float calculaPotencia(){
+        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
+    }
+
+    public float getGuanysAcumulats(){
+        return guanysAcumulats;
+    }
+
+    public PaginaEstat mostraEstat(){
+        float temperaturaReactor = reactor.getTemperaturaReactor();
+        float tempSistemaDeRefrigeracio = sistemaRefrigeracio.calculaOutput(reactor.getTemperaturaReactor());
+        float generadorVapor = this.generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres)));
+        float potenciaGenerada = calculaPotencia();
+
+        PaginaEstat paginaEstat = new PaginaEstat(dia, getInsercioBarres(), temperaturaReactor, tempSistemaDeRefrigeracio,generadorVapor,potenciaGenerada );
+        return paginaEstat;
+    }
+
+    public Bitacola mostraBitacola(){
+        return bitacola;
+    }
+
+    public List<PaginaIncidencies> mostraIncidencies(){
+        return mostraBitacola().getIncidencies();
     }
 
     /**
      * Aquest mètode ha de establir la nova temperatura del reactor.
      */
     private void refrigeraReactor() {
-          // Completar
+          reactor.setTemperaturaReactor(reactor.getTemperaturaReactor() - sistemaRefrigeracio.calculaOutput(insercioBarres));
     }
 
     /**
@@ -82,6 +171,9 @@ public class Dades extends InDades{
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
           // Completar
+        reactor.revisa(paginaIncidencies);
+        sistemaRefrigeracio.revisa(paginaIncidencies);
+        turbina.revisa(paginaIncidencies);
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {
@@ -117,4 +209,5 @@ public class Dades extends InDades{
         bitacolaDia.afegeixPagina(paginaIncidencies);
         return bitacolaDia;
     }
+
 }

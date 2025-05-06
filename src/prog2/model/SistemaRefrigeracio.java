@@ -19,6 +19,10 @@ public class SistemaRefrigeracio implements InComponent {
         llistaBomba.add(b);
     }
 
+    public ArrayList<BombaRefrigerant> getLlistaBomba(){
+        return llistaBomba;
+    }
+
 
     public void activa() throws CentralUBException {
         Iterator<BombaRefrigerant> itr = llistaBomba.iterator();
@@ -56,10 +60,7 @@ public class SistemaRefrigeracio implements InComponent {
         Iterator<BombaRefrigerant> itr = llistaBomba.iterator();
         while (itr.hasNext()) {
             BombaRefrigerant bombaRefrigerant = itr.next();
-            if (bombaRefrigerant.getForaDeServei()) {
-            //escriure en Pagina incidencies
-            }
-
+            bombaRefrigerant.revisa(p);
         }
 
     }

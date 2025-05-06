@@ -7,13 +7,13 @@ public class PaginaEstat extends PaginaBitacola{
     private float outputGeneradorDeVapor;
     private float outputTurvina;
 
-    public PaginaEstat(int dia, float demandaPotencia,float potenciaGenerada,
+    public PaginaEstat(int dia, float insercioBarres,float outputReactor,
                        float outputSistemaDeRefrigeracio,
-                       float beneficis, float penalitzacioExesProduccio){
+                       float outputGeneradorDeVapor, float outputTurvina){
         super(dia);
-        this.insercioBarres = demandaPotencia; this.outputReactor = potenciaGenerada;
+        this.insercioBarres = insercioBarres; this.outputReactor = outputReactor;
         this.outputSistemaDeRefrigeracio = outputSistemaDeRefrigeracio;
-        this.outputGeneradorDeVapor = beneficis; this.outputTurvina = penalitzacioExesProduccio;
+        this.outputGeneradorDeVapor = outputGeneradorDeVapor; this.outputTurvina = outputTurvina;
     }
 
     public float getInsercioBarres() {

@@ -41,8 +41,10 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
         public void revisa (PaginaIncidencies p){
             if (variableUniforme % 4 == id){
+                p.afegeixIncidencia("bomba " + id + "fora de servei");
                 //escriure a Pagina Incidencies que es queda fora de servei
             }else{
+                p.afegeixIncidencia("bomba " + id + "funciona");
                 //escriure a Pagina Incidencies que no es queda fora de servei
             }
         }
