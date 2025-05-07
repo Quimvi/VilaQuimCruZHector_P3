@@ -40,7 +40,6 @@ public class Turbina implements InComponent{
             return 20;
     }
 
-
     public float calculaOutput(float input){
         if (!getActivat())
             return 0;
@@ -50,7 +49,5 @@ public class Turbina implements InComponent{
 
         else
             return input * 2;
-
     }
-
 }

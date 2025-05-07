@@ -46,14 +46,11 @@ public class Reactor implements InComponent{
                 return 35;
         }
 
-
         public float calculaOutput(float input){
             if (!getActivat())
                 return temperaturaReactor;
 
             else
                 return temperaturaReactor + ((100 - input) * 10);
-
         }
-
-    }
+}

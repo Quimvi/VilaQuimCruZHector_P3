@@ -10,16 +10,27 @@ public class PaginaEconomica extends PaginaBitacola{
     private float guanysAcumulats;
 
     public PaginaEconomica(int dia, float demandaPotencia,float potenciaGenerada,
-                           float beneficis, float penalitzacioExesProduccio,
+                           float beneficis, float penalitzacioExcesProduccio,
                            float costOperatiu, float guanysAcumulats){
         super(dia);
-        this.demandaPotencia = demandaPotencia; this.potenciaGenerada = potenciaGenerada; this.percentatgePotencia = 100*(getPotenciaGenerada()/getDemandaPotencia());
-        this.beneficis = beneficis; this.penalitzacioExesProduccio = penalitzacioExesProduccio;
-        this.costOperatiu = costOperatiu; this.guanysAcumulats = guanysAcumulats;
+        setDemandaPotencia(demandaPotencia);
+        setPotenciaGenerada(potenciaGenerada);
+        setBeneficis(beneficis);
+        setPenalitzacioExesProduccio(penalitzacioExcesProduccio);
+        setCostOperatiu(costOperatiu);
+        setGuanysAcumulats(guanysAcumulats);
+    }
+
+    public void setDemandaPotencia(float demandaPotencia) {
+        this.demandaPotencia = demandaPotencia;
     }
 
     public float getDemandaPotencia() {
         return demandaPotencia;
+    }
+
+    public void setPotenciaGenerada(float potenciaGenerada) {
+        this.potenciaGenerada = potenciaGenerada;
     }
 
     public float getPotenciaGenerada() {
@@ -27,19 +38,35 @@ public class PaginaEconomica extends PaginaBitacola{
     }
 
     public float getPercentatgePotencia() {
-        return percentatgePotencia;
+        return percentatgePotencia = 100*(getPotenciaGenerada()/getDemandaPotencia());
+    }
+
+    public void setBeneficis(float beneficis) {
+        this.beneficis = beneficis;
     }
 
     public float getBeneficis() {
         return beneficis;
     }
 
+    public void setPenalitzacioExesProduccio(float penalitzacioExesProduccio) {
+        this.penalitzacioExesProduccio = penalitzacioExesProduccio;
+    }
+
     public float getPenalitzacioExesProduccio() {
         return penalitzacioExesProduccio;
     }
 
+    public void setCostOperatiu(float costOperatiu) {
+        this.costOperatiu = costOperatiu;
+    }
+
     public float getCostOperatiu() {
         return costOperatiu;
+    }
+
+    public void setGuanysAcumulats(float guanysAcumulats) {
+        this.guanysAcumulats = guanysAcumulats;
     }
 
     public float getGuanysAcumulats() {

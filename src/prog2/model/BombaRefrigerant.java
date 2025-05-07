@@ -12,6 +12,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
             this.variableUniforme = variableUniforme.seguentValor();
             setId(id);
         }
+
         public void setId(int id) throws CentralUBException{
             if (id > 3 || id < 0)
                 throw new CentralUBException("El Id ha de ser de 0-3");
@@ -25,10 +26,9 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
         public void activa() throws CentralUBException{
             if (this.foraDeServei)
-                throw new CentralUBException("ja es trova fora de servei"); // cambiar text si cal
+                throw new CentralUBException("La bomba no pot ser activada, es troba fora de servei."); // cambiar text si cal
             else
                 this.activat = true;
-
         }
 
         public void desactiva(){
@@ -41,7 +41,8 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
         public void revisa (PaginaIncidencies p){
             if (variableUniforme % 4 == id){
-                //escriure a Pagina Incidencies que es queda fora de servei
+                this.foraDeServei = true;
+                p.afegeixIncidencia();
             }else{
                 //escriure a Pagina Incidencies que no es queda fora de servei
             }
@@ -52,22 +53,20 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         }
 
         public float getCapacitat() {
-            if (!getActivat())
+            if (!getActivat() || getForaDeServei())
                 return 0;
             else
                 return 250;
         }
 
         public float getCostOperatiu() {
-            if (!getActivat())
+            if (!getActivat() || getForaDeServei())
                 return 0;
             else
                 return 130;
         }
 
         public String toString(){
-            return "Id ="+ getId() + ", Activat=" + getActivat() + ", Fora de servei=" + getForaDeServei();
+            return "Id=" + getId() + ", Activat=" + getActivat() + ", Fora de servei=" + getForaDeServei();
         }
-
-
 }

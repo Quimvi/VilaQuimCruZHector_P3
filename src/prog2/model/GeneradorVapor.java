@@ -27,7 +27,6 @@ public class GeneradorVapor implements InComponent{
             if (!getActivat()){
                 //fer algo amb pàgina incidencies
             }
-
         }
 
         public float getCostOperatiu(){
@@ -44,7 +43,5 @@ public class GeneradorVapor implements InComponent{
 
             else
                 return input * 0.9f;
-
         }
-
-    }
+}

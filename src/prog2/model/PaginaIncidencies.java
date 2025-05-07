@@ -27,6 +27,4 @@ public class PaginaIncidencies extends PaginaBitacola{
         }
         return concatenador.toString();
     }
-
-
 }

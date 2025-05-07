@@ -24,5 +24,4 @@ public class VariableNormal {
     public float seguentValor() {
         return (float) mean + standardDeviation * (float) random.nextGaussian();
     }
-
 }

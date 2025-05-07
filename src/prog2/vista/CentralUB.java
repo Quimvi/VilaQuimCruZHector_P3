@@ -4,6 +4,8 @@
  */
 package prog2.vista;
 
+import prog2.model.VariableNormal;
+
 /**
  *
  * @author Daniel Ortiz
@@ -40,14 +42,14 @@ public class CentralUB {
     }
     
     private float generaDemandaPotencia(){
-        float valor = Math.round(variableNormal.seguentValor());
-        if (valor > DEMANDA_MAX)
+        demandaPotencia = Math.round(variableNormal.seguentValor());
+        if (demandaPotencia > DEMANDA_MAX)
             return DEMANDA_MAX;
         else
-            if (valor < DEMANDA_MIN)
+            if (demandaPotencia < DEMANDA_MIN)
                 return DEMANDA_MIN;
             else
-                return valor;
+                return demandaPotencia;
     }
     
     private void finalitzaDia() {

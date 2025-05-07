@@ -49,19 +49,17 @@ public class SistemaRefrigeracio implements InComponent {
             if (bombaRefrigerant.getActivat())
                 return true;
         }
-            return false;
+        return false;
     }
 
     public void revisa (PaginaIncidencies p){
         Iterator<BombaRefrigerant> itr = llistaBomba.iterator();
         while (itr.hasNext()) {
             BombaRefrigerant bombaRefrigerant = itr.next();
-            if (bombaRefrigerant.getForaDeServei()) {
-            //escriure en Pagina incidencies
+            if (bombaRefrigerant.getForaDeServei() || !bombaRefrigerant.getActivat()) {
+                bombaRefrigerant.revisa(p);
             }
-
         }
-
     }
 
     public float getCostOperatiu(){
@@ -93,7 +91,4 @@ public class SistemaRefrigeracio implements InComponent {
             return input2;
         }
     }
-
 }
-
-
