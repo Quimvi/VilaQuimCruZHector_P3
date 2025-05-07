@@ -34,7 +34,9 @@ public class Reactor implements InComponent{
 
         public void revisa (PaginaIncidencies p){
             if (!getActivat()){
-                //fer algo amb pàgina incidencies
+                p.afegeixIncidencia("Reactor fora de servei");
+            }else{
+                p.afegeixIncidencia("Reactor actiu");
             }
 
         }
@@ -46,11 +48,15 @@ public class Reactor implements InComponent{
                 return 35;
         }
 
+
         public float calculaOutput(float input){
             if (!getActivat())
                 return temperaturaReactor;
 
             else
-                return temperaturaReactor + ((100 - input) * 10);
+               setTemperaturaReactor(temperaturaReactor + ((100 - input) * 10));
+               return this.temperaturaReactor;
+
         }
-}
+
+    }

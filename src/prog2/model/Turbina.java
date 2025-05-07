@@ -28,7 +28,9 @@ public class Turbina implements InComponent{
 
     public void revisa (PaginaIncidencies p){
         if (!getActivat()){
-            //fer algo amb pàgina incidencies
+            p.afegeixIncidencia("Turbina fora de servei");
+        }else{
+            p.afegeixIncidencia("Turbina actiu");
         }
 
     }
