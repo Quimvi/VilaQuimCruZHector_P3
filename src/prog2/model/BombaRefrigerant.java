@@ -26,7 +26,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
         public void activa() throws CentralUBException{
             if (this.foraDeServei)
-                throw new CentralUBException("La bomba no pot ser activada, es troba fora de servei."); // cambiar text si cal
+                throw new CentralUBException("La bomba no pot ser activada, es troba fora de servei.");
             else
                 this.activat = true;
         }
@@ -42,9 +42,9 @@ public class BombaRefrigerant implements InBombaRefrigerant{
         public void revisa (PaginaIncidencies p){
             if (variableUniforme % 4 == id){
                 this.foraDeServei = true;
-                p.afegeixIncidencia("Bomba " + id + "fora de servei");
+                p.afegeixIncidencia("La bomba refrig. " + id + " està fora de servei");
             }else{
-                p.afegeixIncidencia("Bomba " + id + "en servei");
+                p.afegeixIncidencia("La bomba refrig. " + id + " està en servei");
             }
         }
 

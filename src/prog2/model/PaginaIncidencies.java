@@ -18,7 +18,7 @@ public class PaginaIncidencies extends PaginaBitacola{
     @Override
     public String toString(){
         StringBuffer concatenador = new StringBuffer();
-        concatenador.append("#Pagina Incidències \n").append("- Dia: ").append(this.getDia()).append("\n");
+        concatenador.append("# Pàgina Incidències \n").append("- Dia: ").append(this.getDia()).append("\n");
         Iterator<String> itr = llistaIncidencies.iterator();
         while(itr.hasNext()){
             concatenador.append("- Descripció Incidència: ");

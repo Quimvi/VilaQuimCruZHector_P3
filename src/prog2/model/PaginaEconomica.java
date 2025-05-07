@@ -3,17 +3,17 @@ package prog2.model;
 public class PaginaEconomica extends PaginaBitacola{
     private float demandaPotencia;
     private float potenciaGenerada;
-    private float penalitzacioExesProduccio;
+    private float penalitzacioExcesProduccio;
     private float guanysAcumulats;
     private Reactor reactor;
     private SistemaRefrigeracio refrigeracio;
     private GeneradorVapor generadorVapor;
     private Turbina turbina;
 
-    public PaginaEconomica(int dia, float demandaPotencia,float potenciaGenerada,float penalitzacioExesProduccio ,float guanysAcumulats,Reactor reactor,SistemaRefrigeracio refrigeracio,GeneradorVapor generadorVapor,Turbina turbina){
+    public PaginaEconomica(int dia, float demandaPotencia,float potenciaGenerada,float penalitzacioExcesProduccio ,float guanysAcumulats,Reactor reactor,SistemaRefrigeracio refrigeracio,GeneradorVapor generadorVapor,Turbina turbina){
         super(dia);
         setDemandaPotencia(demandaPotencia); setPotenciaGenerada(potenciaGenerada);
-        setGuanysAcumulats(guanysAcumulats);    setPenalitzacioExesProduccio(penalitzacioExesProduccio);
+        setGuanysAcumulats(guanysAcumulats);    setPenalitzacioExcesProduccio(penalitzacioExcesProduccio);
         setReactor(reactor); setTurbina(turbina); setBombes(refrigeracio); setGeneradorVapor(generadorVapor);
     }
 
@@ -58,23 +58,24 @@ public class PaginaEconomica extends PaginaBitacola{
             return potenciaGenerada;
         }
         else{
-            return getDemandaPotencia() - getPenalitzacioExesProduccio();
+            return getDemandaPotencia() - getPenalitzacioExcesProduccio();
         }
     }
 
-    public float getPenalitzacioExesProduccio() {
-        return penalitzacioExesProduccio;
+    public float getPenalitzacioExcesProduccio() {
+        if (getDemandaPotencia() >= getPotenciaGenerada())
+            return 0;
+
+        penalitzacioExcesProduccio = getPotenciaGenerada() - getDemandaPotencia();
+        return penalitzacioExcesProduccio;
     }
 
-    public void setPenalitzacioExesProduccio(float penalitzacioExesProduccio) {
-        this.penalitzacioExesProduccio = penalitzacioExesProduccio;
+    public void setPenalitzacioExcesProduccio(float penalitzacioExcesProduccio) {
+        this.penalitzacioExcesProduccio = penalitzacioExcesProduccio;
     }
 
     public float getCostOperatiu() {
-        float costTotal;
-        costTotal = refrigeracio.getCostOperatiu() + reactor.getCostOperatiu() + turbina.getCostOperatiu() + generadorVapor.getCostOperatiu();
-
-        return costTotal;
+        return refrigeracio.getCostOperatiu() + reactor.getCostOperatiu() + turbina.getCostOperatiu() + generadorVapor.getCostOperatiu();
     }
 
     public float getGuanysAcumulats() {
@@ -90,7 +91,7 @@ public class PaginaEconomica extends PaginaBitacola{
         return "# Pàgina Econòmica "+"\n- Dia:" + this.getDia() + "\n- Demanda de Potència:" + this.getDemandaPotencia()
                 +"\n-  Potència Generada:" + this.getPotenciaGenerada() +"\n- Demanda de Potència Satisfeta::" + this.getPercentatgePotencia() + "%"
                 +"\n- Beneficis:" + this.getBeneficis() + " Unitats Econòmiques"
-                + "\n- Penalització Excés Producció:" + this.getPenalitzacioExesProduccio() + " Unitats Econòmiques"
+                + "\n- Penalització Excés Producció:" + this.getPenalitzacioExcesProduccio() + " Unitats Econòmiques"
                 + "\n- Cost Operatiu:" + this.getCostOperatiu() + " Unitats Econòmiques"
                 + "\n- Guanys acumulats:" + this.getGuanysAcumulats() + " Unitats Econòmiques";
     }

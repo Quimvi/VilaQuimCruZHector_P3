@@ -33,12 +33,11 @@ public class Reactor implements InComponent{
         }
 
         public void revisa (PaginaIncidencies p){
-            if (!getActivat()){
-                p.afegeixIncidencia("Reactor fora de servei");
-            }else{
-                p.afegeixIncidencia("Reactor actiu");
-            }
-
+            if (!getActivat())
+                p.afegeixIncidencia("El reactor ha sigut desactivat");
+            else if (getTemperaturaReactor() > 1000)
+                desactiva();
+                p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima");
         }
 
         public float getCostOperatiu(){
@@ -48,15 +47,12 @@ public class Reactor implements InComponent{
                 return 35;
         }
 
-
         public float calculaOutput(float input){
             if (!getActivat())
                 return temperaturaReactor;
 
             else
                setTemperaturaReactor(temperaturaReactor + ((100 - input) * 10));
-               return this.temperaturaReactor;
-
+            return this.temperaturaReactor;
         }
-
-    }
+}
