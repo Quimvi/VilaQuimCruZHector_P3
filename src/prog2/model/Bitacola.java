@@ -26,8 +26,11 @@ public class Bitacola implements InBitacola{
                 PaginaIncidencies paginaIncidencies = (PaginaIncidencies) pagina;
                 llista.add(paginaIncidencies);
             }
-
         }
         return llista;
+    }
+
+    public String toString(){
+        return paginesBitacola.get(0).toString() + "\n" + paginesBitacola.get(1).toString() + "\n" + paginesBitacola.get(2).toString();
     }
 }

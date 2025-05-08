@@ -18,7 +18,7 @@ public class IniciadorCentralUB {
      */
     public static void main(String[] args) {
         // Creem un objecte de la vista
-        CentralUB centralUB=new CentralUB();
+        CentralUB centralUB = new CentralUB();
         
         // Inicialitza l'execució de la vista
         centralUB.gestioCentralUB();

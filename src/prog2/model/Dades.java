@@ -209,5 +209,4 @@ public class Dades implements InDades{
         bitacolaDia.afegeixPagina(paginaIncidencies);
         return bitacolaDia;
     }
-
 }
