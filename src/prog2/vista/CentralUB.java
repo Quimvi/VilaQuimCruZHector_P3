@@ -23,91 +23,96 @@ public class CentralUB {
     
     /** Generador aleatori de la demanda de potència **/
     private VariableNormal variableNormal;
-    private Menu menu, subMenuBC, subMenuR, subMenuSR;
+    private Menu<OpcioMenuPrincipal> menu;
+    private Menu<OpcioSubMenuBC> subMenuBC;
+    private Menu<OpcioSubMenuR> subMenuR;
+    private Menu<OpcioSubMenuSR> subMenuSR;
     private Adaptador adaptador;
     
     /** Demanda de potència del dia actual **/
     private float demandaPotencia;
-    public Object[] llistaOpcions = new String[] {"Gestió barres de control", "Gestió reactor", "Gestió sistema refrigeració", "Mostrar estat central",
-    "Mostrar bitàcola", "Mostrar incidències", "Obtenir demanda satisfeta amb configuració actual", "Finalitzar dia", "Guardar dades", "Carregar dades", "Sortir"};
-
-    public Object[] llistaSubOpBC = new String[] {"Obtenir inserció barres", "Establir inserció barres", "Sortir"};
-    public Object[] llistaSubOpR = new String[] {"Activar reactor", "Desactivar reactor", "Mostrar estat", "Sortir"};
-    public Object[] llistaSubOpSR = new String[] {"Activar totes les bombes", "Desactivar totes les bombes", "Activar bomba", "Desactivar bomba", "Mostrar estat", "Sortir"};
     
     /* Constructor*/
     public CentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
-        menu = new Menu("Menú Central UB", llistaOpcions);
-        subMenuBC = new Menu("Submenú barres de control", llistaSubOpBC);
-        subMenuR = new Menu("Submenú reactor", llistaSubOpR);
-        subMenuSR = new Menu("Submenú sistema refrigeració", llistaSubOpSR);
+        menu = new Menu<>("Menú Central UB", OpcioMenuPrincipal.values());
+        subMenuBC = new Menu<>("Submenú barres de control", OpcioSubMenuBC.values());
+        subMenuR = new Menu<>("Submenú reactor", OpcioSubMenuR.values());
+        subMenuSR = new Menu<>("Submenú sistema refrigeració", OpcioSubMenuSR.values());
     }
-    
+
     public void gestioCentralUB() {
         // Mostrar missatge inicial
         System.out.println("Benvingut a la planta PWR de la UB");
         System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
 
         int bombaActivar, bombaDesactivar;
-        String opcioM, camiDesti, camiOrigen;
+        String camiDesti, camiOrigen;
         float insercioBarres = 0;
+
+        OpcioMenuPrincipal opcioM;
         do {
             menu.mostrarMenu();
             Scanner sc = new Scanner(System.in);
-            opcioM = (String) menu.getOpcio(sc);
+            opcioM = menu.getOpcio(sc);
 
             switch (opcioM) {
-                case "Gestió barres de control":
-                    String subOpBC;
+                case GESTIO_BARRES_CONTROL:
+                    OpcioSubMenuBC subOpBC;
                     do {
                         subMenuBC.mostrarMenu();
-                        subOpBC = (String) subMenuBC.getOpcio(sc);
+                        subOpBC = subMenuBC.getOpcio(sc);
                         switch (subOpBC) {
-                            case "Obtenir inserció barres":
+                            case OBTENIR_INSERCIO:
                                 System.out.println(adaptador.getInsercioBarres() + "%");
                                 break;
 
-                            case "Establir inserció barres":
+                            case ESTABLIR_INSERCIO:
                                 System.out.println("Estableix l'inserció de les barres: ");
                                 insercioBarres = sc.nextFloat();
                                 adaptador.setInsercioBarres(insercioBarres);
                                 break;
+
+                            case SORTIR:
+                                break;
                         }
-                    } while (!subOpBC.equals("Sortir"));
+                    } while (subOpBC != OpcioSubMenuBC.SORTIR);
                     break;
 
-                case "Gestió reactor":
-                    String subOpR;
+                case GESTIO_REACTOR:
+                    OpcioSubMenuR subOpR;
                     do {
                         subMenuR.mostrarMenu();
-                        subOpR = (String) subMenuR.getOpcio(sc);
+                        subOpR = subMenuR.getOpcio(sc);
                         switch (subOpR) {
-                            case "Activar reactor":
+                            case ACTIVAR_REACTOR:
                                 adaptador.activaReactor();
                                 System.out.println("Reactor activat");
                                 break;
 
-                            case "Desactivar reactor":
+                            case DESACTIVAR_REACTOR:
                                 adaptador.desactivaReactor();
                                 System.out.println("Reactor desactivat");
                                 break;
 
-                            case "Mostrar estat":
+                            case MOSTRAR_ESTAT:
                                 System.out.println(adaptador.getEstatReactor());
                                 break;
+
+                            case SORTIR:
+                                break;
                         }
-                    } while (!subOpR.equals("Sortir"));
+                    } while (subOpR != OpcioSubMenuR.SORTIR);
                     break;
 
-                case "Gestió sistema refrigeració":
-                    String subOpSR;
+                case GESTIO_SISTEMA_REFRIGERACIO:
+                    OpcioSubMenuSR subOpSR;
                     do {
                         subMenuSR.mostrarMenu();
-                        subOpSR = (String) subMenuSR.getOpcio(sc);
+                        subOpSR = subMenuSR.getOpcio(sc);
                         switch (subOpSR) {
-                            case "Activar totes les bombes":
+                            case ACTIVAR_TOTES_BOMBES:
                                 adaptador.activaBomba(0);
                                 adaptador.activaBomba(1);
                                 adaptador.activaBomba(2);
@@ -115,7 +120,7 @@ public class CentralUB {
                                 System.out.println("Totes les bombes han estat activades");
                                 break;
 
-                            case "Desactivar totes les bombes":
+                            case DESACTIVAR_TOTES_BOMBES:
                                 adaptador.desactivaBomba(0);
                                 adaptador.desactivaBomba(1);
                                 adaptador.desactivaBomba(2);
@@ -123,65 +128,69 @@ public class CentralUB {
                                 System.out.println("Totes les bombes han estat desactivades");
                                 break;
 
-                            case "Activar bomba":
+                            case ACTIVAR_BOMBA:
                                 System.out.println("Quina bomba vols activar? ");
                                 bombaActivar = sc.nextInt();
                                 adaptador.activaBomba(bombaActivar);
                                 System.out.println("Bomba " + bombaActivar + " activada");
                                 break;
 
-                            case "Desactivar bomba":
+                            case DESACTIVAR_BOMBA:
                                 System.out.println("Quina bomba vols desactivar? ");
                                 bombaDesactivar = sc.nextInt();
                                 adaptador.desactivaBomba(bombaDesactivar);
                                 System.out.println("Bomba " + bombaDesactivar + " desactivada");
                                 break;
 
-                            case "Mostrar estat":
+                            case MOSTRAR_ESTAT:
                                 System.out.println(adaptador.getEstatSistemaRefrigeracio());
                                 break;
+
+                            case SORTIR:
+                                break;
                         }
-                    } while (!subOpSR.equals("Sortir"));
+                    } while (subOpSR != OpcioSubMenuSR.SORTIR);
                     break;
 
-                case "Mostrar estat central":
+                case MOSTRAR_ESTAT_CENTRAL:
                     System.out.println(adaptador.getEstatActual());
                     break;
 
-                case "Mostrar bitàcola":
+                case MOSTRAR_BITACOLA:
                     System.out.println(adaptador.getBitacolaCompleta());
                     break;
 
-                case "Mostrar incidències":
+                case MOSTRAR_INCIDENCIES:
                     System.out.println(adaptador.getIncidencies());
                     break;
 
-                case "Obtenir demanda satisfeta amb configuració actual":
-                    System.out.println("La demanda satisfeta amb la configuració actual és de " + 100*(adaptador.getPotenciaGenerada()/demandaPotencia) + "%");
+                case OBTENIR_DEMANDA_SATISFETA:
+                    System.out.println("La demanda satisfeta amb la configuració actual és de " +
+                            100 * (adaptador.getPotenciaGenerada() / demandaPotencia) + "%");
                     break;
 
-                case "Finalitzar dia":
+                case FINALITZAR_DIA:
                     finalitzaDia();
                     break;
 
-                case "Guardar dades":
+                case GUARDAR_DADES:
                     System.out.println("Camí destí: ");
                     camiDesti = sc.next();
                     adaptador.guardaDades(camiDesti);
                     System.out.println("Dades guardades!");
                     break;
 
-                case "Carregar dades":
+                case CARREGAR_DADES:
                     System.out.println("Camí d'origen: ");
                     camiOrigen = sc.next();
                     adaptador.carregaDades(camiOrigen);
                     System.out.println("Dades carregades!");
                     break;
 
-                default:
+                case SORTIR:
                     break;
             }
-        } while (!opcioM.equals("Sortir"));
+        } while (opcioM != OpcioMenuPrincipal.SORTIR);
     }
     
     private float generaDemandaPotencia(){
