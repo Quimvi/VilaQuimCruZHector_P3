@@ -5,7 +5,6 @@
 package prog2.vista;
 
 import prog2.adaptador.Adaptador;
-import prog2.model.Dades;
 import prog2.model.VariableNormal;
 
 import java.util.Scanner;
@@ -36,6 +35,7 @@ public class CentralUB {
     public CentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
+        adaptador = new Adaptador();
         menu = new Menu<>("Menú Central UB", OpcioMenuPrincipal.values());
         subMenuBC = new Menu<>("Submenú barres de control", OpcioSubMenuBC.values());
         subMenuR = new Menu<>("Submenú reactor", OpcioSubMenuR.values());
