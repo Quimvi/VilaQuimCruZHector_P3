@@ -50,6 +50,7 @@ public class CentralUB {
         System.out.println("Benvingut a la planta PWR de la UB");
         System.out.println("La demanda de potència elèctrica avui es de " + demandaPotencia + " unitats");
 
+        int bombaActivar, bombaDesactivar;
         String opcioM, camiDesti, camiOrigen;
         float insercioBarres = 0;
         do {
@@ -107,15 +108,33 @@ public class CentralUB {
                         subOpSR = (String) subMenuSR.getOpcio(sc);
                         switch (subOpSR) {
                             case "Activar totes les bombes":
+                                adaptador.activaBomba(0);
+                                adaptador.activaBomba(1);
+                                adaptador.activaBomba(2);
+                                adaptador.activaBomba(3);
+                                System.out.println("Totes les bombes han estat activades");
                                 break;
 
                             case "Desactivar totes les bombes":
+                                adaptador.desactivaBomba(0);
+                                adaptador.desactivaBomba(1);
+                                adaptador.desactivaBomba(2);
+                                adaptador.desactivaBomba(3);
+                                System.out.println("Totes les bombes han estat desactivades");
                                 break;
 
                             case "Activar bomba":
+                                System.out.println("Quina bomba vols activar? ");
+                                bombaActivar = sc.nextInt();
+                                adaptador.activaBomba(bombaActivar);
+                                System.out.println("Bomba " + bombaActivar + " activada");
                                 break;
 
                             case "Desactivar bomba":
+                                System.out.println("Quina bomba vols desactivar? ");
+                                bombaDesactivar = sc.nextInt();
+                                adaptador.desactivaBomba(bombaDesactivar);
+                                System.out.println("Bomba " + bombaDesactivar + " desactivada");
                                 break;
 
                             case "Mostrar estat":
