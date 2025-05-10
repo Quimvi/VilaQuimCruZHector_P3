@@ -4,6 +4,7 @@ import prog2.vista.CentralUBException;
 
 public class GeneradorVapor implements InComponent{
         private boolean activat;
+        private float costOperatiu;
 
         public GeneradorVapor(){
             desactiva();
@@ -36,6 +37,9 @@ public class GeneradorVapor implements InComponent{
                 return 25;
         }
 
+        public void setCostOperatiu(float costOperatiu) {
+            this.costOperatiu = costOperatiu;
+        }
 
         public float calculaOutput(float input){
             if (!getActivat())

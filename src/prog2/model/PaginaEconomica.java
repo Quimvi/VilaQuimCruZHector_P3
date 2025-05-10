@@ -12,9 +12,16 @@ public class PaginaEconomica extends PaginaBitacola{
 
     public PaginaEconomica(int dia, float demandaPotencia,float potenciaGenerada,float penalitzacioExcesProduccio ,float guanysAcumulats,Reactor reactor,SistemaRefrigeracio refrigeracio,GeneradorVapor generadorVapor,Turbina turbina){
         super(dia);
-        setDemandaPotencia(demandaPotencia); setPotenciaGenerada(potenciaGenerada);
-        setGuanysAcumulats(guanysAcumulats);    setPenalitzacioExcesProduccio(penalitzacioExcesProduccio);
-        setReactor(reactor); setTurbina(turbina); setBombes(refrigeracio); setGeneradorVapor(generadorVapor);
+        setReactor(reactor);
+        setTurbina(turbina);
+        setBombes(refrigeracio);
+        setGeneradorVapor(generadorVapor);
+
+        setDemandaPotencia(demandaPotencia);
+        setPotenciaGenerada(potenciaGenerada);
+        setPenalitzacioExcesProduccio(penalitzacioExcesProduccio);
+
+        setGuanysAcumulats(guanysAcumulats);
     }
 
     public void setGeneradorVapor(GeneradorVapor generadorVapor) {

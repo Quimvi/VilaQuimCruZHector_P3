@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 public class Turbina implements InComponent{
     private boolean activat;
+    private float costOperatiu;
 
     public Turbina(){
         desactiva();
@@ -40,6 +41,10 @@ public class Turbina implements InComponent{
             return 0;
         else
             return 20;
+    }
+
+    public void setCostOperatiu(float costOperatiu) {
+        this.costOperatiu = costOperatiu;
     }
 
     public float calculaOutput(float input){

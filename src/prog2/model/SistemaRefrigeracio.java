@@ -9,6 +9,7 @@ public class SistemaRefrigeracio implements InComponent {
 
     private ArrayList<BombaRefrigerant> llistaBomba;
     private boolean activat = false;
+    private float costOperatiu;
 
     public SistemaRefrigeracio(){
         llistaBomba = new ArrayList<BombaRefrigerant>();
@@ -77,6 +78,9 @@ public class SistemaRefrigeracio implements InComponent {
         return cost;
     }
 
+    public void setCostOperatiu(float costOperatiu) {
+        this.costOperatiu = costOperatiu;
+    }
 
     public float calculaOutput(float input){
         float input2 = 0;

@@ -5,6 +5,7 @@ import prog2.vista.CentralUBException;
 public class Reactor implements InComponent{
         private boolean activat;
         private float temperaturaReactor; //comprovar q sigui realment així
+        private float costOperatiu;
 
         public Reactor(){
            setTemperaturaReactor(25);
@@ -45,6 +46,10 @@ public class Reactor implements InComponent{
                 return 0;
             else
                 return 35;
+        }
+
+        public void setCostOperatiu(float costOperatiu) {
+            this.costOperatiu = costOperatiu;
         }
 
         public float calculaOutput(float input){

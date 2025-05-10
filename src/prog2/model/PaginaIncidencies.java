@@ -16,15 +16,15 @@ public class PaginaIncidencies extends PaginaBitacola{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuffer concatenador = new StringBuffer();
-        concatenador.append("# Pàgina Incidències \n").append("- Dia: ").append(this.getDia()).append("\n");
-        Iterator<String> itr = llistaIncidencies.iterator();
-        while(itr.hasNext()){
-            concatenador.append("- Descripció Incidència: ");
-            concatenador.append(itr).append("\n");
-            itr.next();
+        concatenador.append("# Pàgina Incidències \n")
+                .append("- Dia: ").append(this.getDia()).append("\n");
+
+        for (String incidencia : llistaIncidencies) { // Utilitza un bucle for-each
+            concatenador.append("- Descripció Incidència: ")
+                    .append(incidencia).append("\n");
         }
-        return concatenador.toString();
+        return concatenador.toString().trim();
     }
 }
