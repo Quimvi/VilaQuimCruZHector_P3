@@ -58,7 +58,7 @@ public class BitacolaTest {
         bitacola.afegeixPagina(paginaEco);
 
         // Verificar concatenació
-        String expected = paginaInc.toString() + "\n" + paginaEstat.toString() + "\n" + paginaEco.toString();
+        String expected = paginaInc.toString() + paginaEstat.toString() + paginaEco.toString();
         Assertions.assertEquals(expected, bitacola.toString());
     }
 }

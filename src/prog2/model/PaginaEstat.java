@@ -88,7 +88,7 @@ public class PaginaEstat extends PaginaBitacola {
      */
     @Override
     public String toString() {
-        return "# Pàgina Estat "
+        return "\n# Pàgina Estat "
                 + "\n- Dia: " + this.getDia()
                 + "\n- Inserció Barres: " + this.getInsercioBarres() + "%"
                 + "\n- Output Reactor: " + this.getOutputReactor() + " Graus"
