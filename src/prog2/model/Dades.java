@@ -94,7 +94,7 @@ public class Dades implements InDades {
     }
 
     // Activació/desactivació del reactor
-    public void activaReactor() throws CentralUBException {
+    public void activaReactor() {
         reactor.activa();
     }
 

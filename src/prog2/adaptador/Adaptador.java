@@ -37,11 +37,7 @@ public class Adaptador {
 
     // Reactor
     public void activaReactor() throws CentralUBException {
-        try {
             _dades.activaReactor();
-        } catch (CentralUBException e) {
-            throw new CentralUBException("No s'ha pogut activar el reactor: " + e.getMessage());
-        }
     }
 
     public void desactivaReactor() {
@@ -54,11 +50,7 @@ public class Adaptador {
 
     // Sistema de Refrigeració
     public void activaBomba(int idBomba) throws CentralUBException {
-        try {
             _dades.activaBomba(idBomba);
-        } catch (CentralUBException e) {
-            throw new CentralUBException("No s'ha pogut activar la bomba: " + e.getMessage());
-        }
     }
 
     public void desactivaBomba(int idBomba) {
@@ -85,11 +77,7 @@ public class Adaptador {
 
     // Gestió del Dia
     public Bitacola finalitzaDia(float demandaPotencia) throws CentralUBException {
-        try {
             return _dades.finalitzaDia(demandaPotencia);
-        } catch (CentralUBException e) {
-            throw new CentralUBException("Error al finalitzar el dia: " + e.getMessage());
-        }
     }
 
     public String getEstatActual() {
@@ -106,11 +94,7 @@ public class Adaptador {
     }
 
     public void setInsercioBarres(float grau) throws CentralUBException {
-        try {
             _dades.setInsercioBarres(grau);
-        } catch (CentralUBException e) {
-            throw new CentralUBException("Error en les barres de control: " + e.getMessage());
-        }
     }
 
     public float getInsercioBarres() {
