@@ -1,30 +1,44 @@
 package prog2.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class PaginaIncidencies extends PaginaBitacola{
+public class PaginaIncidencies extends PaginaBitacola {
+    // Llista on es guarden les descripcions de totes les incidències del dia
     private ArrayList<String> llistaIncidencies;
 
-    public PaginaIncidencies(int dia){
+    /**
+     * Constructor. Crea una pàgina d'incidències per al dia indicat
+     * i inicialitza la llista d'incidències buida.
+     */
+    public PaginaIncidencies(int dia) {
         super(dia);
         llistaIncidencies = new ArrayList<String>();
     }
 
-    public void afegeixIncidencia(String descIncidencia){
+    /**
+     * Afegeix una nova incidència a la llista.
+     * @param descIncidencia Descripció de l'incidència a afegir.
+     */
+    public void afegeixIncidencia(String descIncidencia) {
         llistaIncidencies.add(descIncidencia);
     }
 
+    /**
+     * Retorna una representació en format text de totes les incidències
+     * registrades per aquest dia.
+     */
     @Override
     public String toString() {
         StringBuffer concatenador = new StringBuffer();
         concatenador.append("# Pàgina Incidències \n")
                 .append("- Dia: ").append(this.getDia()).append("\n");
 
-        for (String incidencia : llistaIncidencies) { // Utilitza un bucle for-each
+        // Recorre totes les incidències i les afegeix al text
+        for (String incidencia : llistaIncidencies) {
             concatenador.append("- Descripció Incidència: ")
                     .append(incidencia).append("\n");
         }
-        return concatenador.toString().trim();
+
+        return concatenador.toString().trim(); // Elimina l’últim salt de línia
     }
 }
