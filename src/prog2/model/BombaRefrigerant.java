@@ -22,6 +22,8 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     public BombaRefrigerant(VariableUniforme variableUniforme, int id) {
         // Obté el següent valor de la variable
         this.variableUniforme = variableUniforme.seguentValor();
+        if (this.variableUniforme % 4 == id)
+            this.foraDeServei = true;
         // Assigna l’id validant-lo
         setId(id);
     }
@@ -57,7 +59,7 @@ public class BombaRefrigerant implements InBombaRefrigerant {
         return this.activat;
     }
 
-    // Revisa l’estat de la bomba. Si `variableUniforme % 4 == id`, la posa fora de servei.
+    // Revisa l’estat de la bomba. Si `variableUniforme % 4 == id, la posa fora de servei.
     // En tots els casos, afegeix una incidència a la pàgina rebuda com a paràmetre.
     public void revisa(PaginaIncidencies p) {
         if (variableUniforme % 4 == id) {
