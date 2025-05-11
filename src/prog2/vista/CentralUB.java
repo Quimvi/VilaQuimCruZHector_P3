@@ -31,7 +31,7 @@ public class CentralUB {
     /** Demanda de potència del dia actual **/
     private float demandaPotencia;
     
-    /* Constructor*/
+    /** Constructor**/
     public CentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demandaPotencia = generaDemandaPotencia();
@@ -69,9 +69,14 @@ public class CentralUB {
                                 break;
 
                             case ESTABLIR_INSERCIO:
-                                System.out.println("Estableix l'inserció de les barres: ");
-                                insercioBarres = sc.nextFloat();
-                                adaptador.setInsercioBarres(insercioBarres);
+                                try {
+                                    System.out.println("Estableix l'inserció de les barres: ");
+                                    insercioBarres = sc.nextFloat();
+                                    adaptador.setInsercioBarres(insercioBarres);
+                                } catch (CentralUBException e) {
+                                    throw new CentralUBException("Error en les barres de control: " + e.getMessage());
+                                }
+
                                 break;
 
                             case SORTIR:

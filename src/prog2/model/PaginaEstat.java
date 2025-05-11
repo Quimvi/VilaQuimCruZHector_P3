@@ -94,6 +94,6 @@ public class PaginaEstat extends PaginaBitacola {
                 + "\n- Output Reactor: " + this.getOutputReactor() + " Graus"
                 + "\n- Output Sistema de Refrigeració: " + this.getOutputSistemaDeRefrigeracio() + " Graus"
                 + "\n- Output Generador de Vapor: " + this.getOutputGeneradorDeVapor() + " Graus"
-                + "\n- Output Turbina: " + this.getOutputTurbina() + " Unitats de Potència";
+                + "\n- Output Turbina: " + this.getOutputTurbina() + " Unitats de Potència" + "\n";
     }
 }
