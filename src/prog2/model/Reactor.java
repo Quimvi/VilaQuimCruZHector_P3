@@ -15,7 +15,10 @@ public class Reactor implements InComponent {
         desactiva();
     }
 
-    public void setTemperaturaReactor(float temperaturaReactor) {
+    public void setTemperaturaReactor(float temperaturaReactor) throws CentralUBException {
+        if (temperaturaReactor < 0) {
+            throw new CentralUBException("La temperatura no pot ser negativa");
+        }
         this.temperaturaReactor = temperaturaReactor;
     }
 

@@ -53,7 +53,10 @@ public class GeneradorVapor implements InComponent {
     }
 
     // Permet modificar el cost operatiu
-    public void setCostOperatiu(float costOperatiu) {
+    public void setCostOperatiu(float costOperatiu) throws CentralUBException {
+        if (costOperatiu < 0) {
+            throw new CentralUBException("El cost operatiu no pot ser negatiu");
+        }
         this.costOperatiu = costOperatiu;
     }
 

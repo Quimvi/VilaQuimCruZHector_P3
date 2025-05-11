@@ -60,7 +60,10 @@ public class Turbina implements InComponent{
      * Estableix el cost operatiu de la turbina. Tot i que el cost operatiu és fix (20) quan està activada,
      * es pot modificar si es vol més flexibilitat.
      */
-    public void setCostOperatiu(float costOperatiu) {
+    public void setCostOperatiu(float costOperatiu) throws CentralUBException {
+        if (costOperatiu < 0) {
+            throw new CentralUBException("El cost operatiu no pot ser negatiu");
+        }
         this.costOperatiu = costOperatiu;
     }
 

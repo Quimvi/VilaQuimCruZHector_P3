@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
 /**
  * Classe que representa una pàgina econòmica de la bitàcola.
  * Inclou informació sobre la demanda i generació de potència,
@@ -38,19 +40,31 @@ public class PaginaEconomica extends PaginaBitacola {
     }
 
     // Setters dels components
-    public void setGeneradorVapor(GeneradorVapor generadorVapor) {
+    public void setGeneradorVapor(GeneradorVapor generadorVapor) throws CentralUBException {
+        if (generadorVapor == null) {
+            throw new CentralUBException("El generador de vapor no pot ser null");
+        }
         this.generadorVapor = generadorVapor;
     }
 
-    public void setBombes(SistemaRefrigeracio refrigeracio) {
+    public void setBombes(SistemaRefrigeracio refrigeracio) throws CentralUBException {
+        if (refrigeracio == null) {
+            throw new CentralUBException("El sistema de refrigeració no pot ser null");
+        }
         this.refrigeracio = refrigeracio;
     }
 
-    public void setReactor(Reactor reactor) {
+    public void setReactor(Reactor reactor) throws CentralUBException {
+        if (reactor == null) {
+            throw new CentralUBException("El reactor no pot ser null");
+        }
         this.reactor = reactor;
     }
 
-    public void setTurbina(Turbina turbina) {
+    public void setTurbina(Turbina turbina) throws CentralUBException {
+        if (turbina == null) {
+            throw new CentralUBException("El turbina no pot ser null");
+        }
         this.turbina = turbina;
     }
 
@@ -59,15 +73,20 @@ public class PaginaEconomica extends PaginaBitacola {
         return demandaPotencia;
     }
 
-    public void setDemandaPotencia(float demandaPotencia) {
+    public void setDemandaPotencia(float demandaPotencia) throws CentralUBException {
+        if (demandaPotencia < 0) {
+            throw new CentralUBException("La demanda de potència no pot ser negativa");
+        }
         this.demandaPotencia = demandaPotencia;
     }
-
     public float getPotenciaGenerada() {
         return potenciaGenerada;
     }
 
-    public void setPotenciaGenerada(float potenciaGenerada) {
+    public void setPotenciaGenerada(float potenciaGenerada) throws CentralUBException {
+        if (potenciaGenerada < 0) {
+            throw new CentralUBException("La potència generada no pot ser negativa");
+        }
         this.potenciaGenerada = potenciaGenerada;
     }
 
@@ -101,7 +120,10 @@ public class PaginaEconomica extends PaginaBitacola {
         return penalitzacioExcesProduccio;
     }
 
-    public void setPenalitzacioExcesProduccio(float penalitzacioExcesProduccio) {
+    public void setPenalitzacioExcesProduccio(float penalitzacioExcesProduccio) throws CentralUBException {
+        if (penalitzacioExcesProduccio < 0) {
+            throw new CentralUBException("La penalització per excés de producció no pot ser negativa");
+        }
         this.penalitzacioExcesProduccio = penalitzacioExcesProduccio;
     }
 

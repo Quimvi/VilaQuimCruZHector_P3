@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
 /**
  * Classe que representa una pàgina d'estat de la bitàcola.
  * Emmagatzema valors tècnics dels components per a un dia determinat.
@@ -26,7 +28,10 @@ public class PaginaEstat extends PaginaBitacola {
     }
 
     // Getters i setters per cada atribut tècnic
-    public void setInsercioBarres(float insercioBarres) {
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException {
+        if (insercioBarres < 0 || insercioBarres > 100) {
+            throw new CentralUBException("La inserció de barres ha d'estar entre 0 i 100%");
+        }
         this.insercioBarres = insercioBarres;
     }
 
@@ -34,7 +39,10 @@ public class PaginaEstat extends PaginaBitacola {
         return insercioBarres;
     }
 
-    public void setOutputReactor(float outputReactor) {
+    public void setOutputReactor(float outputReactor) throws CentralUBException {
+        if (outputReactor < 0) {
+            throw new CentralUBException("L'output del reactor no pot ser negatiu");
+        }
         this.outputReactor = outputReactor;
     }
 
@@ -42,7 +50,10 @@ public class PaginaEstat extends PaginaBitacola {
         return outputReactor;
     }
 
-    public void setOutputSistemaDeRefrigeracio(float outputSistemaDeRefrigeracio) {
+    public void setOutputSistemaDeRefrigeracio(float outputSistemaDeRefrigeracio) throws CentralUBException {
+        if (outputSistemaDeRefrigeracio < 0) {
+            throw new CentralUBException("L'output del sistema de refrigeració no pot ser negatiu");
+        }
         this.outputSistemaDeRefrigeracio = outputSistemaDeRefrigeracio;
     }
 
@@ -50,7 +61,10 @@ public class PaginaEstat extends PaginaBitacola {
         return outputSistemaDeRefrigeracio;
     }
 
-    public void setOutputGeneradorDeVapor(float outputGeneradorDeVapor) {
+    public void setOutputGeneradorDeVapor(float outputGeneradorDeVapor) throws CentralUBException {
+        if (outputGeneradorDeVapor < 0) {
+            throw new CentralUBException("L'output del generador no pot ser negatiu");
+        }
         this.outputGeneradorDeVapor = outputGeneradorDeVapor;
     }
 
@@ -58,7 +72,10 @@ public class PaginaEstat extends PaginaBitacola {
         return outputGeneradorDeVapor;
     }
 
-    public void setOutputTurbina(float outputTurbina) {
+    public void setOutputTurbina(float outputTurbina) throws CentralUBException {
+        if (outputTurbina < 0) {
+            throw new CentralUBException("L'output de la turbina no pot ser negatiu");
+        }
         this.outputTurbina = outputTurbina;
     }
 

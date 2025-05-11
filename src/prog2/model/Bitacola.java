@@ -1,6 +1,8 @@
 package prog2.model;
 
 // Imports necessaris per utilitzar llistes i iteradors
+import prog2.vista.CentralUBException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +19,10 @@ public class Bitacola implements InBitacola {
     }
 
     // Mètode per afegir una pàgina (de tipus PaginaBitacola) a la bitàcola
-    public void afegeixPagina(PaginaBitacola p) {
+    public void afegeixPagina(PaginaBitacola p) throws CentralUBException {
+        if (p == null) {
+            throw new CentralUBException("La pàgina no pot ser null");
+        }
         paginesBitacola.add(p);
     }
 

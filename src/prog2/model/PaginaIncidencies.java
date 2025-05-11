@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
 import java.util.ArrayList;
 
 public class PaginaIncidencies extends PaginaBitacola {
@@ -19,7 +21,10 @@ public class PaginaIncidencies extends PaginaBitacola {
      * Afegeix una nova incidència a la llista.
      * @param descIncidencia Descripció de l'incidència a afegir.
      */
-    public void afegeixIncidencia(String descIncidencia) {
+    public void afegeixIncidencia(String descIncidencia) throws CentralUBException {
+        if (descIncidencia == null || descIncidencia.trim().isEmpty()) {
+            throw new CentralUBException("La descripció de l'incidència no pot estar buida");
+        }
         llistaIncidencies.add(descIncidencia);
     }
 

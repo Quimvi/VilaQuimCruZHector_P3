@@ -20,7 +20,10 @@ public class SistemaRefrigeracio implements InComponent {
     /**
      * Afegeix una bomba refrigerant al sistema.
      */
-    public void afegirBomba(BombaRefrigerant b){
+    public void afegirBomba(BombaRefrigerant b) throws CentralUBException {
+        if (b == null) {
+            throw new CentralUBException("La bomba no pot ser null");
+        }
         llistaBomba.add(b);
     }
 
