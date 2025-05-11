@@ -161,6 +161,6 @@ public class PaginaEconomica extends PaginaBitacola {
                 + "\n- Beneficis: " + this.getBeneficis() + " Unitats Econòmiques"
                 + "\n- Penalització Excés Producció: " + this.getPenalitzacioExcesProduccio() + " Unitats Econòmiques"
                 + "\n- Cost Operatiu: " + this.getCostOperatiu() + " Unitats Econòmiques"
-                + "\n- Guanys acumulats: " + this.getGuanysAcumulats() + " Unitats Econòmiques";
+                + "\n- Guanys acumulats: " + this.getGuanysAcumulats() + " Unitats Econòmiques" + "\n";
     }
 }

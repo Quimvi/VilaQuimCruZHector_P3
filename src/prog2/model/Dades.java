@@ -87,15 +87,17 @@ public class Dades implements InDades {
     }
 
     public void setInsercioBarres(float insercioBarres) throws CentralUBException {
-        if (insercioBarres < 0 || insercioBarres > 100) {
-            throw new CentralUBException("El grau d'inserció de barres ha d'estar entre 0-100");
+        if (insercioBarres > 100) {
+            throw new CentralUBException("El grau d'inserció de barres ha de ser de 0-100");
+        } else {
+            this.insercioBarres = insercioBarres;
         }
-        this.insercioBarres = insercioBarres;
     }
 
     // Activació/desactivació del reactor
     public void activaReactor() {
         reactor.activa();
+        reactor.calculaOutput(insercioBarres);
     }
 
     public void desactivaReactor() {

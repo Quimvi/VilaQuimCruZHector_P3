@@ -93,6 +93,6 @@ public class BombaRefrigerant implements InBombaRefrigerant {
 
     // Retorna una representació textual de l’estat de la bomba
     public String toString() {
-        return "Id=" + getId() + ", Activat=" + getActivat() + ", Fora de servei=" + getForaDeServei();
+        return "Id=" + getId() + ", Activat=" + getActivat() + ", Fora de servei=" + getForaDeServei() + "\n";
     }
 }

@@ -46,8 +46,24 @@ public class Bitacola implements InBitacola {
 
     // Mètode que retorna una representació en forma de String de les tres primeres pàgines de la bitàcola
     public String toString() {
-        return paginesBitacola.get(0).toString() + "\n" +
-                paginesBitacola.get(1).toString() + "\n" +
-                paginesBitacola.get(2).toString();
+        StringBuffer string = new StringBuffer();
+        if (paginesBitacola.size() == 0){
+            return "No hi han pàgines";
+        }
+        for (PaginaBitacola bitacola : paginesBitacola) {
+            if (bitacola instanceof PaginaEconomica){
+                PaginaEconomica paginaEconomica = (PaginaEconomica) bitacola;
+                string.append(paginaEconomica.toString());
+            }else if (bitacola instanceof PaginaEstat){
+                PaginaEstat paginaEstat = (PaginaEstat) bitacola;
+                string.append(paginaEstat.toString());
+            }else if (bitacola instanceof PaginaIncidencies) {
+                // Es fa el càsting i s’afegeix a la llista de retorn
+                PaginaIncidencies paginaIncidencies = (PaginaIncidencies) bitacola;
+                string.append(paginaIncidencies.toString());
+            }
+
+        }
+        return string.toString();
     }
 }

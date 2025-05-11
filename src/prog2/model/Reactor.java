@@ -77,4 +77,10 @@ public class Reactor implements InComponent {
             return temperaturaReactor;
         }
     }
+
+    public String toString() {
+        return "Està activat : " + getActivat() + "\n"
+                + "Temperatura reactor : " + getTemperaturaReactor() + "\n"
+                + "Cost operatiu : " + getCostOperatiu();
+    }
 }

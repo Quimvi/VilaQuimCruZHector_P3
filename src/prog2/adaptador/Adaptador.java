@@ -64,7 +64,7 @@ public class Adaptador {
     // Bitàcola i Informes
 
     public String getBitacolaCompleta() {
-        return _dades.toString();
+        return _dades.mostraBitacola().toString();
     }
 
     public String getIncidencies() {

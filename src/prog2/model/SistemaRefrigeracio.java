@@ -111,4 +111,13 @@ public class SistemaRefrigeracio implements InComponent {
         }
         return Math.min(input, capacitatTotal);
     }
+
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        for (BombaRefrigerant bomba : llistaBomba) {
+               string.append(bomba.toString());
+            }
+        string.append("cost operatiu:" + costOperatiu + "\n");
+        return string.toString();
+    }
 }
