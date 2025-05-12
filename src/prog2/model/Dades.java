@@ -154,7 +154,7 @@ public class Dades implements InDades {
 
     // Mostra una pàgina amb l’estat actual de la central
     public PaginaEstat mostraEstat() {
-        float temperaturaReactor = reactor.getTemperaturaReactor();
+        float temperaturaReactor = reactor.calculaOutput(insercioBarres);
         float tempSistemaRefrigeracio = sistemaRefrigeracio.calculaOutput(temperaturaReactor);
         float generadorVaporOutput = generadorVapor.calculaOutput(tempSistemaRefrigeracio);
         float potenciaGenerada = calculaPotencia();
@@ -180,7 +180,7 @@ public class Dades implements InDades {
     // Refreda el reactor segons la capacitat del sistema de refrigeració
     private void refrigeraReactor() {
         reactor.setTemperaturaReactor(
-                reactor.getTemperaturaReactor() - sistemaRefrigeracio.calculaOutput(insercioBarres)
+                reactor.calculaOutput(insercioBarres) - sistemaRefrigeracio.calculaOutput(insercioBarres)
         );
     }
 

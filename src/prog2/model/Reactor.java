@@ -73,8 +73,7 @@ public class Reactor implements InComponent {
             return temperaturaReactor;
         } else {
             // Quan el reactor està actiu, la temperatura puja segons la inserció de barres
-            temperaturaReactor += (100 - input) * 10;
-            return temperaturaReactor;
+            return temperaturaReactor + (100 - input) * 10;
         }
     }
 
