@@ -188,17 +188,25 @@ public class CentralUB {
                     break;
 
                 case GUARDAR_DADES:
-                    System.out.println("Camí destí: ");
-                    camiDesti = sc.next();
-                    adaptador.guardaDades(camiDesti);
-                    System.out.println("Dades guardades!");
+                    try {
+                        System.out.println("Camí destí: ");
+                        camiDesti = sc.next();
+                        adaptador.guardaDades(camiDesti);
+                        System.out.println("Dades guardades!");
+                    } catch (CentralUBException e) {
+                        System.out.print("Error en guardar les dades: " + e.getMessage());
+                    }
                     break;
 
                 case CARREGAR_DADES:
-                    System.out.println("Camí d'origen: ");
-                    camiOrigen = sc.next();
-                    adaptador.carregaDades(camiOrigen);
-                    System.out.println("Dades carregades!");
+                    try {
+                        System.out.println("Camí d'origen: ");
+                        camiOrigen = sc.next();
+                        adaptador.carregaDades(camiOrigen);
+                        System.out.println("Dades carregades!");
+                    }catch (CentralUBException e) {
+                        System.out.print("Error en carregar les dades: " + e.getMessage());
+                    }
                     break;
 
                 case SORTIR:
