@@ -74,7 +74,7 @@ public class CentralUB {
                                     insercioBarres = sc.nextFloat();
                                     adaptador.setInsercioBarres(insercioBarres);
                                 } catch (CentralUBException e) {
-                                    throw new CentralUBException("Error en les barres de control: " + e.getMessage());
+                                    System.out.println("Error en les barres de control: " + e.getMessage());
                                 }
 
                                 break;
@@ -135,10 +135,14 @@ public class CentralUB {
                                 break;
 
                             case ACTIVAR_BOMBA:
-                                System.out.println("Quina bomba vols activar? ");
-                                bombaActivar = sc.nextInt();
-                                adaptador.activaBomba(bombaActivar);
-                                System.out.println("Bomba " + bombaActivar + " activada");
+                                try {
+                                    System.out.println("Quina bomba vols activar? ");
+                                    bombaActivar = sc.nextInt();
+                                    adaptador.activaBomba(bombaActivar);
+                                    System.out.println("Bomba " + bombaActivar + " activada");
+                                } catch (CentralUBException e) {
+                                    System.out.println("Error en les bombas de activar: " + e.getMessage());
+                                }
                                 break;
 
                             case DESACTIVAR_BOMBA:
