@@ -97,7 +97,6 @@ public class Dades implements InDades {
     // Activació/desactivació del reactor
     public void activaReactor() {
         reactor.activa();
-        reactor.calculaOutput(insercioBarres);
     }
 
     public void desactivaReactor() {
@@ -105,6 +104,7 @@ public class Dades implements InDades {
     }
 
     public Reactor mostraReactor() {
+        reactor.calculaOutput(insercioBarres);
         return this.reactor;
     }
 
