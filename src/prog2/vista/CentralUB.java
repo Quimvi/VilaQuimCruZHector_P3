@@ -204,7 +204,7 @@ public class CentralUB {
                         camiOrigen = sc.next();
                         adaptador.carregaDades(camiOrigen);
                         System.out.println("Dades carregades!");
-                    }catch (CentralUBException e) {
+                    } catch (CentralUBException e) {
                         System.out.print("Error en carregar les dades: " + e.getMessage());
                     }
                     break;

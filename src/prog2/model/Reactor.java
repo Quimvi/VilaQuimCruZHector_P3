@@ -4,7 +4,7 @@ import prog2.vista.CentralUBException;
 
 public class Reactor implements InComponent {
     private boolean activat;
-    private float temperaturaReactor;
+    private float temperaturaReactor, temperatura;
     private float costOperatiu;
 
     /**
@@ -23,7 +23,10 @@ public class Reactor implements InComponent {
     }
 
     public float getTemperaturaReactor() {
-        return temperaturaReactor;
+        if (getActivat())
+            return temperatura;
+        else
+            return temperaturaReactor;
     }
 
     public void activa() {
@@ -73,6 +76,7 @@ public class Reactor implements InComponent {
             return temperaturaReactor;
         } else {
             // Quan el reactor està actiu, la temperatura puja segons la inserció de barres
+            temperatura = temperaturaReactor + (100 - input) * 10;
             return temperaturaReactor + (100 - input) * 10;
         }
     }
