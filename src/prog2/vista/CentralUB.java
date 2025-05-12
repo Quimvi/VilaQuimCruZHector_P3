@@ -90,6 +90,7 @@ public class CentralUB {
                     do {
                         subMenuR.mostrarMenu();
                         subOpR = subMenuR.getOpcio(sc);
+                        adaptador.getEstatReactor();
                         switch (subOpR) {
                             case ACTIVAR_REACTOR:
                                 adaptador.activaReactor();
