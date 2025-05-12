@@ -141,15 +141,19 @@ public class CentralUB {
                                     adaptador.activaBomba(bombaActivar);
                                     System.out.println("Bomba " + bombaActivar + " activada");
                                 } catch (CentralUBException e) {
-                                    System.out.println("Error en les bombas de activar: " + e.getMessage());
+                                    System.out.println("Error en les bombes de activar: " + e.getMessage());
                                 }
                                 break;
 
                             case DESACTIVAR_BOMBA:
-                                System.out.println("Quina bomba vols desactivar? ");
-                                bombaDesactivar = sc.nextInt();
-                                adaptador.desactivaBomba(bombaDesactivar);
-                                System.out.println("Bomba " + bombaDesactivar + " desactivada");
+                                try {
+                                    System.out.println("Quina bomba vols desactivar? ");
+                                    bombaDesactivar = sc.nextInt();
+                                    adaptador.desactivaBomba(bombaDesactivar);
+                                    System.out.println("Bomba " + bombaDesactivar + " desactivada");
+                                } catch (CentralUBException e) {
+                                    System.out.println("Error en les bombes de desactivar: " + e.getMessage());
+                                }
                                 break;
 
                             case MOSTRAR_ESTAT:

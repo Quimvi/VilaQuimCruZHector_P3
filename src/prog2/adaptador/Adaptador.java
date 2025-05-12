@@ -53,7 +53,7 @@ public class Adaptador {
             _dades.activaBomba(idBomba);
     }
 
-    public void desactivaBomba(int idBomba) {
+    public void desactivaBomba(int idBomba) throws CentralUBException {
         _dades.desactivaBomba(idBomba);
     }
 
