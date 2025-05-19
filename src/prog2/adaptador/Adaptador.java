@@ -12,6 +12,10 @@ public class Adaptador {
         this._dades = new Dades();
     }
 
+    public SistemaRefrigeracio getSistemaRefrigeracio() {
+        return _dades.getSistemaRefrigeracio();
+    }
+
     /* ********
      * MÈTODES DE PERSISTÈNCIA *
      ********* */

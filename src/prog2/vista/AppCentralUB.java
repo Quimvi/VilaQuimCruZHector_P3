@@ -1,6 +1,7 @@
 package prog2.vista;
 
 import prog2.adaptador.Adaptador;
+import prog2.model.SistemaRefrigeracio;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,8 @@ public class AppCentralUB extends JFrame {
     private JButton btnVisualitzarIC;
     private JButton btnFiDia;
     private JButton btnGCDades;
-    private Adaptador adaptador = new Adaptador();    // Mirar com obtenir l'adaptador que utilitza CentralUB
+    private final Adaptador adaptador;
+    private final SistemaRefrigeracio sistemaRefrigeracio;
 
     public AppCentralUB() {
         setTitle("App Central UB");
@@ -20,10 +22,12 @@ public class AppCentralUB extends JFrame {
         setContentPane(panell);
         setSize(500,400);
         setLocationRelativeTo(null);
+        adaptador = new Adaptador();
+        sistemaRefrigeracio = adaptador.getSistemaRefrigeracio();
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmGestioComponentsCentral frmGCC = new FrmGestioComponentsCentral(AppCentralUB.this, adaptador);
+                FrmGestioComponentsCentral frmGCC = new FrmGestioComponentsCentral(AppCentralUB.this, adaptador, sistemaRefrigeracio);
                 frmGCC.setVisible(true);
             }
         });
@@ -50,7 +54,7 @@ public class AppCentralUB extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             AppCentralUB appCUB = new AppCentralUB();
-            appCUB.setVisible(true);
+            appCUB.setVisible(true);;
         });
     }
 }

@@ -94,6 +94,10 @@ public class Dades implements InDades {
         }
     }
 
+    public SistemaRefrigeracio getSistemaRefrigeracio() {
+        return sistemaRefrigeracio;
+    }
+
     // Activació/desactivació del reactor
     public void activaReactor() {
         reactor.activa();
