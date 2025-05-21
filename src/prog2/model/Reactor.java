@@ -23,9 +23,6 @@ public class Reactor implements InComponent {
     }
 
     public float getTemperaturaReactor() {
-        if (getActivat())
-            return temperatura;
-        else
             return temperaturaReactor;
     }
 

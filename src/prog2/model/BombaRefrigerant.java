@@ -22,7 +22,7 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     public BombaRefrigerant(VariableUniforme variableUniforme, int id) {
         // Obté el següent valor de la variable
         this.variableUniforme = variableUniforme.seguentValor();
-        if (this.variableUniforme % 4 == id)
+        if (this.variableUniforme < 25)
             this.foraDeServei = true;
         // Assigna l’id validant-lo
         setId(id);

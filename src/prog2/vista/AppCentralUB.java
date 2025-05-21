@@ -34,7 +34,8 @@ public class AppCentralUB extends JFrame {
         btnVisualitzarIC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FrmVisualitzarInformacio frmVIC = new FrmVisualitzarInformacio(AppCentralUB.this, adaptador);
+                frmVIC.setVisible(true);
             }
         });
         btnFiDia.addActionListener(new ActionListener() {
@@ -54,7 +55,7 @@ public class AppCentralUB extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             AppCentralUB appCUB = new AppCentralUB();
-            appCUB.setVisible(true);;
+            appCUB.setVisible(true);
         });
     }
 }
