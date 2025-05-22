@@ -83,6 +83,9 @@ public class Adaptador {
     public Bitacola finalitzaDia(float demandaPotencia) throws CentralUBException {
             return _dades.finalitzaDia(demandaPotencia);
     }
+    public int getDia(){
+        return _dades.getDia();
+    }
 
     public String getEstatActual() {
         return _dades.mostraEstat().toString();

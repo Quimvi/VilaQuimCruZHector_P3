@@ -231,4 +231,8 @@ public class Dades implements InDades {
 
         return bitacolaDia;
     }
+
+    public int getDia(){
+        return dia;
+    }
 }

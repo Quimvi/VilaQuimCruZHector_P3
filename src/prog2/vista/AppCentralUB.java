@@ -13,8 +13,11 @@ public class AppCentralUB extends JFrame {
     private JButton btnVisualitzarIC;
     private JButton btnFiDia;
     private JButton btnGCDades;
-    private final Adaptador adaptador;
-    private final SistemaRefrigeracio sistemaRefrigeracio;
+    private JTextField demandaPotencia;
+    private JTextField nDia;
+    private JTextField guanysAcumulats;
+    private final Adaptador adaptador = new Adaptador();
+
 
     public AppCentralUB() {
         setTitle("App Central UB");
@@ -22,12 +25,13 @@ public class AppCentralUB extends JFrame {
         setContentPane(panell);
         setSize(500,400);
         setLocationRelativeTo(null);
-        adaptador = new Adaptador();
-        sistemaRefrigeracio = adaptador.getSistemaRefrigeracio();
+        nDia.setText("Dia: " + adaptador.getDia());
+        demandaPotencia = gene
+        nDia.setText("Demanda de potencia: " + adaptador.());
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmGestioComponentsCentral frmGCC = new FrmGestioComponentsCentral(AppCentralUB.this, adaptador, sistemaRefrigeracio);
+                FrmGestioComponentsCentral frmGCC = new FrmGestioComponentsCentral(AppCentralUB.this, adaptador, adaptador.getSistemaRefrigeracio());
                 frmGCC.setVisible(true);
             }
         });
@@ -56,6 +60,7 @@ public class AppCentralUB extends JFrame {
         SwingUtilities.invokeLater(() -> {
             AppCentralUB appCUB = new AppCentralUB();
             appCUB.setVisible(true);
+
         });
     }
 }

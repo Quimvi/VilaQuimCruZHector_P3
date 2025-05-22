@@ -57,9 +57,11 @@ public class FrmGestioComponentsCentral extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (btnActivatDesactivatButton.getText().equals("Activat")) {
+                    adaptador.desactivaReactor();
                     btnActivatDesactivatButton.setText("Desactivat");
                 }
                 else if (btnActivatDesactivatButton.getText().equals("Desactivat")) {
+                    adaptador.activaReactor();
                     btnActivatDesactivatButton.setText("Activat");
                 }
             }
@@ -67,7 +69,7 @@ public class FrmGestioComponentsCentral extends JDialog {
         btnAplicarModificacions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adaptador.setInsercioBarres(Integer.parseInt(txtIntroduirInsercioBarresControl.getText()));
+                adaptador.setInsercioBarres(Float.parseFloat(txtIntroduirInsercioBarresControl.getText()));
 
                 if (btnActivatDesactivatButton.getText().equals("Activat")) {
                     adaptador.desactivaReactor();
