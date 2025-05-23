@@ -32,6 +32,7 @@ public class Dades implements InDades {
     private Bitacola bitacola;
     private int dia;
 
+
     // Constructor: inicialitza els components de la central
     public Dades() {
         this.variableUniforme = new VariableUniforme(VAR_UNIF_SEED);

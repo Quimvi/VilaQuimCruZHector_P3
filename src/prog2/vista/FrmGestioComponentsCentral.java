@@ -35,7 +35,7 @@ public class FrmGestioComponentsCentral extends JDialog {
         setLocationRelativeTo(parent);
         setModal(true);
         txtIntroduirInsercioBarresControl.setText(String.valueOf(adaptador.getInsercioBarres()));
-        btnActivatDesactivatButton.setText("Activat");
+        btnActivatDesactivatButton.setText("Activar");
         llistaBomba = sistemaRefrigeracio.getLlistaBomba();
         txtArea.setText("Bomba 1: " + (llistaBomba.get(0).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(0).getActivat() ? "activada\n" : "desactivada\n") +
                         "Bomba 2: " + (llistaBomba.get(1).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(1).getActivat() ? "activada\n" : "desactivada\n") +
@@ -47,22 +47,25 @@ public class FrmGestioComponentsCentral extends JDialog {
                 txtIntroduirInsercioBarresControl.setText(sldBarresControl.getValue()+"");
             }
         });
+        /*
         btnIntroduirInsercioBarresControl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sldBarresControl.setValue(Integer.parseInt(txtIntroduirInsercioBarresControl.getText()));   // El valor s'ha modificar o deixar igual però s'ha de tocar perquè sinó salta error
+                adaptador.setInsercioBarres(txtIntroduirInsercioBarresControl.getText());   // El valor s'ha modificar o deixar igual però s'ha de tocar perquè sinó salta error
             }
         });
+        */
+
         btnActivatDesactivatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (btnActivatDesactivatButton.getText().equals("Activat")) {
+                if (btnActivatDesactivatButton.getText().equals("Activar")) {
                     adaptador.desactivaReactor();
-                    btnActivatDesactivatButton.setText("Desactivat");
+                    btnActivatDesactivatButton.setText("Desactivar");
                 }
-                else if (btnActivatDesactivatButton.getText().equals("Desactivat")) {
+                else if (btnActivatDesactivatButton.getText().equals("Desactivar")) {
                     adaptador.activaReactor();
-                    btnActivatDesactivatButton.setText("Activat");
+                    btnActivatDesactivatButton.setText("Activar");
                 }
             }
         });
@@ -71,10 +74,10 @@ public class FrmGestioComponentsCentral extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 adaptador.setInsercioBarres(Float.parseFloat(txtIntroduirInsercioBarresControl.getText()));
 
-                if (btnActivatDesactivatButton.getText().equals("Activat")) {
+                if (btnActivatDesactivatButton.getText().equals("Activar")) {
                     adaptador.desactivaReactor();
                 }
-                else if (btnActivatDesactivatButton.getText().equals("Desactivat")) {
+                else if (btnActivatDesactivatButton.getText().equals("Desactivar")) {
                     adaptador.activaReactor();
                 }
 
