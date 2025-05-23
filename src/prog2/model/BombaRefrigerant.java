@@ -3,8 +3,10 @@ package prog2.model;
 // Importació d’una excepció personalitzada per a la gestió d'errors
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 // Classe que representa una bomba refrigerant i implementa la interfície InBombaRefrigerant
-public class BombaRefrigerant implements InBombaRefrigerant {
+public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
 
     // Identificador de la bomba (ha d’estar entre 0 i 3)
     private int id;
@@ -16,14 +18,12 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     private boolean foraDeServei = false;
 
     // Valor enter obtingut d’un generador de valors aleatoris o seqüencials (VariableUniforme)
-    private int variableUniforme;
+    private VariableUniforme variableUniforme;
 
     // Constructor que rep una VariableUniforme i un id
     public BombaRefrigerant(VariableUniforme variableUniforme, int id) {
         // Obté el següent valor de la variable
-        this.variableUniforme = variableUniforme.seguentValor();
-        if (this.variableUniforme < 25)
-            this.foraDeServei = true;
+        this.variableUniforme = variableUniforme;
         // Assigna l’id validant-lo
         setId(id);
     }
@@ -62,12 +62,11 @@ public class BombaRefrigerant implements InBombaRefrigerant {
     // Revisa l’estat de la bomba. Si `variableUniforme % 4 == id, la posa fora de servei.
     // En tots els casos, afegeix una incidència a la pàgina rebuda com a paràmetre.
     public void revisa(PaginaIncidencies p) {
-        if (variableUniforme % 4 == id) {
+        if (this.variableUniforme.seguentValor() <= 25) {
             this.foraDeServei = true;
             p.afegeixIncidencia("La bomba refrig. " + id + " està fora de servei");
-        } else {
-            p.afegeixIncidencia("La bomba refrig. " + id + " està en servei");
         }
+
     }
 
     // Retorna si la bomba està fora de servei

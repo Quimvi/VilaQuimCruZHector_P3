@@ -3,12 +3,13 @@ package prog2.model;
 // Imports necessaris per utilitzar llistes i iteradors
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 // Definició de la classe Bitacola que implementa la interfície InBitacola
-public class Bitacola implements InBitacola {
+public class Bitacola implements InBitacola, Serializable {
 
     // Llista on es guarden les pàgines de la bitàcola
     private ArrayList<PaginaBitacola> paginesBitacola;

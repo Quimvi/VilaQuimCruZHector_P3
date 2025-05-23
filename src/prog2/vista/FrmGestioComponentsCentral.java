@@ -34,9 +34,35 @@ public class FrmGestioComponentsCentral extends JDialog {
         setSize(600, 500);
         setLocationRelativeTo(parent);
         setModal(true);
+        llistaBomba = sistemaRefrigeracio.getLlistaBomba();
         txtIntroduirInsercioBarresControl.setText(String.valueOf(adaptador.getInsercioBarres()));
         btnActivatDesactivatButton.setText("Activar");
-        llistaBomba = sistemaRefrigeracio.getLlistaBomba();
+        if(adaptador.getEstatReactor().getActivat()){
+            btnActivatDesactivatButton.setText("Desactivar");
+        }else{
+            btnActivatDesactivatButton.setText("Activar");
+        }
+        if (llistaBomba.get(0).getActivat()){
+            bomba1CheckBox.setSelected(true);
+        }else{
+            bomba1CheckBox.setSelected(false);
+        }
+        if (llistaBomba.get(1).getActivat()){
+            bomba2CheckBox.setSelected(true);
+        }else{
+            bomba2CheckBox.setSelected(false);
+        }
+        if (llistaBomba.get(2).getActivat()){
+            bomba3CheckBox.setSelected(true);
+        }else{
+            bomba3CheckBox.setSelected(false);
+        }
+        if (llistaBomba.get(3).getActivat()){
+            bomba4CheckBox.setSelected(true);
+        }else{
+            bomba4CheckBox.setSelected(false);
+        }
+
         txtArea.setText("Bomba 1: " + (llistaBomba.get(0).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(0).getActivat() ? "activada\n" : "desactivada\n") +
                         "Bomba 2: " + (llistaBomba.get(1).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(1).getActivat() ? "activada\n" : "desactivada\n") +
                         "Bomba 3: " + (llistaBomba.get(2).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(2).getActivat() ? "activada\n" : "desactivada\n") +
@@ -59,12 +85,17 @@ public class FrmGestioComponentsCentral extends JDialog {
         btnActivatDesactivatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (btnActivatDesactivatButton.getText().equals("Activar")) {
-                    adaptador.desactivaReactor();
-                    btnActivatDesactivatButton.setText("Desactivar");
+                    if(adaptador.getEstatReactor().getTemperaturaReactor() > 1000){
+                        JOptionPane.showMessageDialog(panell, "El reactor no es pot activar. Ha superat la temperatura màxima");
+                    }else{
+                        btnActivatDesactivatButton.setText("Desactivar");
+                    }
+
                 }
                 else if (btnActivatDesactivatButton.getText().equals("Desactivar")) {
-                    adaptador.activaReactor();
+
                     btnActivatDesactivatButton.setText("Activar");
                 }
             }
@@ -85,43 +116,44 @@ public class FrmGestioComponentsCentral extends JDialog {
                     if (llistaBomba.get(0).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 1 està fora de servei");
                     } else {
-                        if (llistaBomba.get(0).getActivat())
-                            llistaBomba.get(0).desactiva();
-                        else
-                            llistaBomba.get(0).activa();
+                        llistaBomba.get(0).activa();
                     }
+                }else{
+                    llistaBomba.get(0).desactiva();
                 }
                 if(bomba2CheckBox.isSelected()) {
                     if (llistaBomba.get(1).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 2 està fora de servei");
                     } else {
-                        if (llistaBomba.get(1).getActivat())
-                            llistaBomba.get(1).desactiva();
-                        else
-                            llistaBomba.get(1).activa();
+                        llistaBomba.get(1).activa();
                     }
+                }else{
+                    llistaBomba.get(1).desactiva();
                 }
+
                 if(bomba3CheckBox.isSelected()) {
                     if (llistaBomba.get(2).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 3 està fora de servei");
                     } else {
-                        if (llistaBomba.get(2).getActivat())
-                            llistaBomba.get(2).desactiva();
-                        else
-                            llistaBomba.get(2).activa();
+                        llistaBomba.get(2).activa();
                     }
+                }else{
+                    llistaBomba.get(2).desactiva();
                 }
                 if(bomba4CheckBox.isSelected()) {
                     if (llistaBomba.get(3).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 4 està fora de servei");
                     } else {
-                        if (llistaBomba.get(3).getActivat())
-                            llistaBomba.get(3).desactiva();
-                        else
-                            llistaBomba.get(3).activa();
+                        llistaBomba.get(3).activa();
                     }
+                }else{
+                    llistaBomba.get(3).desactiva();
                 }
-                dispose();
+                txtArea.setText("Bomba 1: " + (llistaBomba.get(0).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(0).getActivat() ? "activada\n" : "desactivada\n") +
+                        "Bomba 2: " + (llistaBomba.get(1).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(1).getActivat() ? "activada\n" : "desactivada\n") +
+                        "Bomba 3: " + (llistaBomba.get(2).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(2).getActivat() ? "activada\n" : "desactivada\n") +
+                        "Bomba 4: " + (llistaBomba.get(3).getForaDeServei() ? "fora de servei" : "en servei") + " i " + (llistaBomba.get(3).getActivat() ? "activada\n" : "desactivada\n"));
+
             }
         });
         btnCancelarModificacions.addActionListener(new ActionListener() {

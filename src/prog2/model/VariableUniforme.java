@@ -4,13 +4,14 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author Daniel Ortiz
  */
-public class VariableUniforme {
+public class VariableUniforme implements Serializable {
     private Random random;
 
     public VariableUniforme(long seed) {
@@ -18,6 +19,7 @@ public class VariableUniforme {
     }
 
     public int seguentValor() {
-        return random.nextInt(100);
+        int rand = random.nextInt(100);
+        return rand;
     } // inicialment estava a 100 el bound
 }

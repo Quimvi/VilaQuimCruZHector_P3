@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class Turbina implements InComponent{
+import java.io.Serializable;
+
+public class Turbina implements InComponent, Serializable {
     private boolean activat;
     private float costOperatiu;
 
@@ -41,11 +43,7 @@ public class Turbina implements InComponent{
      * Revisa l'estat de la turbina i afegeix una incidència a la pàgina corresponent.
      */
     public void revisa(PaginaIncidencies p){
-        if (!getActivat()){
-            p.afegeixIncidencia("Turbina fora de servei");
-        } else {
-            p.afegeixIncidencia("Turbina activa");
-        }
+
     }
 
     /**

@@ -1,5 +1,7 @@
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  * Classe abstracta que representa una pàgina de la bitàcola de la central.
  * Cada pàgina està associada a un dia concret.
@@ -7,7 +9,7 @@ package prog2.model;
  * Les subclasses implementaran el mètode toString() per mostrar la informació específica
  * (com pot ser una pàgina d’estat, d’incidències o econòmica).
  */
-public abstract class PaginaBitacola {
+public abstract class PaginaBitacola implements Serializable {
 
     private int dia; // Dia al qual fa referència la pàgina
 

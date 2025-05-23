@@ -2,7 +2,9 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
-public class Reactor implements InComponent {
+import java.io.Serializable;
+
+public class Reactor implements InComponent, Serializable {
     private boolean activat;
     private float temperaturaReactor, temperatura;
     private float costOperatiu;
@@ -44,11 +46,9 @@ public class Reactor implements InComponent {
      * - Si la temperatura supera els 1000ºC, es desactiva automàticament i s'informa.
      */
     public void revisa(PaginaIncidencies p) {
-        if (!getActivat()) {
-            p.afegeixIncidencia("El reactor ha sigut desactivat");
-        } else if (getTemperaturaReactor() > 1000) {
+        if (getTemperaturaReactor() > 1000) {
             desactiva();
-            p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima");
+            p.afegeixIncidencia("El reactor s'ha desactivat per superar la temperatura màxima");
         }
     }
 

@@ -2,12 +2,14 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa el generador de vapor de la central.
  * Aquest component transforma la calor procedent del sistema
  * de refrigeració en vapor per moure la turbina.
  */
-public class GeneradorVapor implements InComponent {
+public class GeneradorVapor implements InComponent, Serializable {
 
     private boolean activat;         // Estat d'activació del generador
     private float costOperatiu;      // Cost operatiu personalitzable
@@ -37,9 +39,7 @@ public class GeneradorVapor implements InComponent {
      * @param p la pàgina d'incidències del dia
      */
     public void revisa(PaginaIncidencies p) {
-        if (!getActivat()) {
-            p.afegeixIncidencia("El generador de vapor està desactivat");
-        }
+
     }
 
     /**

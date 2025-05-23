@@ -131,10 +131,6 @@ public class PaginaEconomica extends PaginaBitacola {
      * Calcula el cost total operatiu de tots els components.
      */
     public float getCostOperatiu() {
-        System.out.print(  refrigeracio.getCostOperatiu()
-                + reactor.getCostOperatiu()
-                + turbina.getCostOperatiu()
-                + generadorVapor.getCostOperatiu());
         return refrigeracio.getCostOperatiu()
                 + reactor.getCostOperatiu()
                 + turbina.getCostOperatiu()

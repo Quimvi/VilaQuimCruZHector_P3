@@ -29,7 +29,7 @@ public class AppCentralUB extends JFrame {
     private JTextField nDia;
     private JTextField guanysAcumulats;
     private final Adaptador adaptador = new Adaptador();
-    private JFileChooser seleccionadorArxiu = new JFileChooser();
+
 
 
 
@@ -68,16 +68,14 @@ public class AppCentralUB extends JFrame {
         btnGCDades.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File fitxer;
-                int resultat = seleccionadorArxiu.showOpenDialog(AppCentralUB.this);
-                //Assegurem que hi hagi un fitxer seleccionat
-                if (resultat == JFileChooser.APPROVE_OPTION) {
-                    //Obtenim el fitxer
-                    fitxer = seleccionadorArxiu.getSelectedFile();
-                    //Posem la ruta del fitxer al quadre de text
-                    adaptador.guardaDades(fitxer.toString());
-                }
+                adaptador.setDemenda(demanda);
+                GuardarCarregar grCr = new GuardarCarregar(AppCentralUB.this, adaptador);
+                grCr.setVisible(true);
+                nDia.setText("Dia: " + adaptador.getDia());
+                demandaPotencia.setText("Demenda de potència: " + adaptador.getDemenda());
+                guanysAcumulats.setText("Guanys acumulats: " + adaptador.getGuanysAcumulats());
             }
+
         });
     }
 

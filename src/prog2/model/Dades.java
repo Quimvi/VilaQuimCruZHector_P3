@@ -5,6 +5,7 @@ package prog2.model;
 import prog2.model.VariableUniforme;
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * i gestiona el seu estat, operacions i l'evolució diària.
  * @author Daniel Ortiz
  */
-public class Dades implements InDades {
+public class Dades implements InDades, Serializable {
 
     // Constants per configurar el sistema
     public final static long VAR_UNIF_SEED = 123;
@@ -31,6 +32,7 @@ public class Dades implements InDades {
     private float guanysAcumulats;
     private Bitacola bitacola;
     private int dia;
+    private float demanda;
 
 
     // Constructor: inicialitza els components de la central
@@ -63,6 +65,13 @@ public class Dades implements InDades {
         sistemaRefrigeracio.afegirBomba(b3);
 
         sistemaRefrigeracio.desactiva();
+    }
+    public void setDemandaPotencia(float demandaPotencia){
+        this.demanda = demandaPotencia;
+    }
+
+    public float getDemandaPotencia(){
+        return demanda;
     }
 
     // Genera i actualitza una pàgina econòmica amb l'estat actual
