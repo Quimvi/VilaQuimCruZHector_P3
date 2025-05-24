@@ -30,9 +30,6 @@ public class AppCentralUB extends JFrame {
     private JTextField guanysAcumulats;
     private final Adaptador adaptador = new Adaptador();
 
-
-
-
     public AppCentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demanda = generaDemandaPotencia();
@@ -62,7 +59,6 @@ public class AppCentralUB extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 finalitzaDia();
-
             }
         });
         btnGCDades.addActionListener(new ActionListener() {
