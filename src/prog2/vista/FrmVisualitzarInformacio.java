@@ -11,39 +11,26 @@ public class FrmVisualitzarInformacio extends JDialog{
     private JComboBox cmboxOpcionsVisualitzar;
     private JButton btnVisualitzar;
     private JPanel panell;
-    private JTextPane mostrarInformacio;
-
 
     public FrmVisualitzarInformacio(JFrame parent, Adaptador adaptador) {
         super(parent);
         setTitle("Visualitzar Informació Central");
         setContentPane(panell);
-        setSize(600, 500);
+        setSize(300, 100);
         setLocationRelativeTo(parent);
         setModal(true);
-        cmboxOpcionsVisualitzar.addItem("Mostrar estat de la central");
-        cmboxOpcionsVisualitzar.addItem("Cuadern de Bitàcola");
-        cmboxOpcionsVisualitzar.addItem("Incidencies");
-
-        cmboxOpcionsVisualitzar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btnVisualitzar.setText((String) cmboxOpcionsVisualitzar.getSelectedItem());
-
-            }
-        });
 
         btnVisualitzar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Objects.equals(btnVisualitzar.getText(), "Mostrar estat de la central")){
-                    mostrarInformacio.setText(adaptador.getEstatActual());
-
-                }else if (Objects.equals(btnVisualitzar.getText(), "Cuadern de Bitàcola")){
-                    mostrarInformacio.setText(adaptador.getBitacolaCompleta());
-
-                }else if (Objects.equals(btnVisualitzar.getText(), "Incidencies")){
-                    mostrarInformacio.setText(adaptador.getIncidencies());
+                if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Estat de la central")) {
+                    JOptionPane.showMessageDialog(panell, adaptador.getEstatActual());
+                }
+                else if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Quadern de bitàcola")){
+                    JOptionPane.showMessageDialog(panell, adaptador.getBitacolaCompleta());
+                }
+                else if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Incidències")){
+                    JOptionPane.showMessageDialog(panell, adaptador.getIncidencies());
                 }
 
             }

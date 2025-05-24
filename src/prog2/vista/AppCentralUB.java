@@ -39,7 +39,7 @@ public class AppCentralUB extends JFrame {
         setSize(500,400);
         setLocationRelativeTo(null);
         nDia.setText("Dia: " + adaptador.getDia());
-        demandaPotencia.setText("Demenda de potència: " + demanda);
+        demandaPotencia.setText("Demanda de potència: " + demanda);
         guanysAcumulats.setText("Guanys acumulats: " + adaptador.getGuanysAcumulats());
         btnGestioComponentsCentral.addActionListener(new ActionListener() {
             @Override
@@ -68,7 +68,7 @@ public class AppCentralUB extends JFrame {
                 GuardarCarregar grCr = new GuardarCarregar(AppCentralUB.this, adaptador);
                 grCr.setVisible(true);
                 nDia.setText("Dia: " + adaptador.getDia());
-                demandaPotencia.setText("Demenda de potència: " + adaptador.getDemenda());
+                demandaPotencia.setText("Demanda de potència: " + adaptador.getDemenda());
                 guanysAcumulats.setText("Guanys acumulats: " + adaptador.getGuanysAcumulats());
             }
 
@@ -93,7 +93,7 @@ public class AppCentralUB extends JFrame {
 
         demanda = generaDemandaPotencia();
         nDia.setText("Dia: " + adaptador.getDia());
-        demandaPotencia.setText("Demenda de potència: " + demanda);
+        demandaPotencia.setText("Demanda de potència: " + demanda);
         guanysAcumulats.setText("Guanys acumulats: " + adaptador.getGuanysAcumulats());
         // Generar i mostrar nova demanda de potencia
 

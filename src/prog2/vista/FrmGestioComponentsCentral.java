@@ -66,6 +66,11 @@ public class FrmGestioComponentsCentral extends JDialog {
             bomba4CheckBox.setSelected(false);
         }
 
+        if (btnActivatDesactivatButton.getText().equals("Activar"))
+            txtArea.setText("Reactor desactivat\n");
+        else
+            txtArea.setText("Reactor activat\n");
+
         btnMostrarBombes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +114,6 @@ public class FrmGestioComponentsCentral extends JDialog {
 
                 }
                 else if (btnActivatDesactivatButton.getText().equals("Desactivar")) {
-
                     btnActivatDesactivatButton.setText("Activar");
                 }
             }
