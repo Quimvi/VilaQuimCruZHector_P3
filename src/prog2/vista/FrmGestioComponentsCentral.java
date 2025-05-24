@@ -133,6 +133,7 @@ public class FrmGestioComponentsCentral extends JDialog {
                 if(bomba1CheckBox.isSelected()) {
                     if (llistaBomba.get(0).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 1 està fora de servei");
+                        llistaBomba.get(0).desactiva();
                     } else {
                         llistaBomba.get(0).activa();
                     }
@@ -142,6 +143,7 @@ public class FrmGestioComponentsCentral extends JDialog {
                 if(bomba2CheckBox.isSelected()) {
                     if (llistaBomba.get(1).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 2 està fora de servei");
+                        llistaBomba.get(1).desactiva();
                     } else {
                         llistaBomba.get(1).activa();
                     }
@@ -152,6 +154,7 @@ public class FrmGestioComponentsCentral extends JDialog {
                 if(bomba3CheckBox.isSelected()) {
                     if (llistaBomba.get(2).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 3 està fora de servei");
+                        llistaBomba.get(2).desactiva();
                     } else {
                         llistaBomba.get(2).activa();
                     }
@@ -161,6 +164,7 @@ public class FrmGestioComponentsCentral extends JDialog {
                 if(bomba4CheckBox.isSelected()) {
                     if (llistaBomba.get(3).getForaDeServei()) {
                         JOptionPane.showMessageDialog(panell, "La bomba 4 està fora de servei");
+                        llistaBomba.get(3).desactiva();
                     } else {
                         llistaBomba.get(3).activa();
                     }

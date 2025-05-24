@@ -33,6 +33,7 @@ public class AppCentralUB extends JFrame {
     public AppCentralUB() {
         variableNormal = new VariableNormal(VAR_NORM_MEAN, VAR_NORM_STD, VAR_NORM_SEED);
         demanda = generaDemandaPotencia();
+        panell.setBackground(Color.GREEN);
         setTitle("App Central UB");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(panell);
