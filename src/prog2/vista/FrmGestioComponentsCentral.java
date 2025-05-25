@@ -29,6 +29,16 @@ public class FrmGestioComponentsCentral extends JDialog {
     private JButton btnMostrarBombes;
     private ArrayList<BombaRefrigerant> llistaBomba;
 
+    /**
+     * Constructor de la classe FrmGestioComponentsCentral.
+     * **Inicialitza el diàleg i configura els seus components.**
+     * Estableix la configuració de la finestra i carrega l'estat actual dels components de la central
+     * (barres de control, reactor, bombes) per reflectir-lo a la interfície.
+     *
+     * @param parent La finestra pare (JFrame) que va obrir aquest diàleg.
+     * @param adaptador L'objecte Adaptador que proporciona accés a la lògica i dades de la central.
+     * @param sistemaRefrigeracio L'objecte SistemaRefrigeracio que conté les bombes.
+     */
     public FrmGestioComponentsCentral(JFrame parent, Adaptador adaptador, SistemaRefrigeracio sistemaRefrigeracio) {
         super(parent);
         setTitle("Gestió Components Central");
@@ -71,6 +81,11 @@ public class FrmGestioComponentsCentral extends JDialog {
         else
             txtArea.setText("Reactor activat\n");
 
+        /**
+         * **ActionListener per a 'btnMostrarBombes':**
+         * Quan es prem, mostra a l'àrea de text l'estat (en/fora de servei i activada/desactivada)
+         * de les bombes de refrigeració seleccionades a la `JList`.
+         */
         btnMostrarBombes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +101,11 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
+        /**
+         * **ChangeListener per a 'sldBarresControl':**
+         * Quan es mou el control lliscant de les barres de control,
+         * actualitza el camp de text associat per reflectir el valor actual.
+         */
         sldBarresControl.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -93,6 +113,11 @@ public class FrmGestioComponentsCentral extends JDialog {
             }
         });
 
+        /**
+         * **ActionListener per a 'btnIntroduirInsercioBarresControl':**
+         * Quan es prem, agafa el valor numèric del camp de text
+         * i l'estableix com el valor del `JSlider`.
+         */
         btnIntroduirInsercioBarresControl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,6 +126,12 @@ public class FrmGestioComponentsCentral extends JDialog {
         });
 
 
+        /**
+         * **ActionListener per a 'btnActivatDesactivatButton':**
+         * Gestiona l'activació/desactivació del reactor.
+         * Si el botó diu "Activar", intenta activar el reactor si la temperatura ho permet.
+         * Si diu "Desactivar", canvia el text a "Activar" per indicar que es pot desactivar.
+         */
         btnActivatDesactivatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,6 +149,13 @@ public class FrmGestioComponentsCentral extends JDialog {
                 }
             }
         });
+        /**
+         * **ActionListener per a 'btnAplicarModificacions':**
+         * **Aplica els canvis realitzats a la interfície a la lògica de la central.**
+         * Actualitza la inserció de les barres de control, activa o desactiva el reactor
+         * segons l'estat del botó, i actualitza l'estat de cada bomba (activada/desactivada)
+         * tenint en compte si està fora de servei. Finalment, tanca el diàleg.
+         */
         btnAplicarModificacions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,6 +212,10 @@ public class FrmGestioComponentsCentral extends JDialog {
                 dispose();
             }
         });
+        /**
+         * **ActionListener per a 'btnCancelarModificacions':**
+         * Quan es prem, simplement tanca el diàleg sense aplicar cap modificació.
+         */
         btnCancelarModificacions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

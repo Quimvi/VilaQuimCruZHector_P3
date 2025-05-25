@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
+/**
+ * Classe FrmVisualitzarInformacio, un diàleg per visualitzar informació de la central.
+ */
 public class FrmVisualitzarInformacio extends JDialog{
     private JComboBox cmboxOpcionsVisualitzar;
     private JButton btnVisualitzar;
@@ -16,6 +19,13 @@ public class FrmVisualitzarInformacio extends JDialog{
     private JScrollBar scrollBar;
     private JScrollPane scrollPane;
 
+    /**
+     * Constructor de la classe FrmVisualitzarInformacio.
+     * **Configura el diàleg, el comportament del desplaçament del text i les accions del botó.**
+     *
+     * @param parent La finestra pare.
+     * @param adaptador L'objecte Adaptador per accedir a les dades de la central.
+     */
     public FrmVisualitzarInformacio(JFrame parent, Adaptador adaptador) {
         super(parent);
         setTitle("Visualitzar Informació Central");
@@ -24,35 +34,34 @@ public class FrmVisualitzarInformacio extends JDialog{
         setLocationRelativeTo(parent);
         setModal(true);
 
-        // --- VINCULAR LA SCROLLBAR AMB EL JScrollPane ---
-        // 1. Obtenir el JScrollPane del JTextArea (assumint que el .form el conté)
-        scrollPane = (JScrollPane) textArea.getParent().getParent(); // Si el JTextArea està dins d'un JScrollPane
-
-        // 2. Vincular el model de la scrollbar personalitzada amb el del JScrollPane
+        // --- Gestió de la barra de desplaçament (scrollbar) ---
+        // Vincula una JScrollBar personalitzada al JTextArea per controlar el seu desplaçament
+        // i amaga la scrollbar per defecte del JScrollPane.
+        scrollPane = (JScrollPane) textArea.getParent().getParent();
         scrollBar.setModel(scrollPane.getVerticalScrollBar().getModel());
-
-        // 3. Opcional: Amagar la scrollbar per defecte del JScrollPane
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-
-        // 4. Afegir listener per sincronitzar el desplaçament
         scrollBar.addAdjustmentListener(new AdjustmentListener() {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
-                // Moure el viewport del JScrollPane quan es mou la scrollbar
                 scrollPane.getVerticalScrollBar().setValue(e.getValue());
             }
         });
 
+        /**
+         * **ActionListener per a 'btnVisualitzar':**
+         * **Mostra informació de la central segons l'opció seleccionada al ComboBox.**
+         * Pot mostrar l'estat actual, el quadern de bitàcola complet o les incidències.
+         */
         btnVisualitzar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Estat de la central")) {
+                String selectedOption = cmboxOpcionsVisualitzar.getSelectedItem().toString();
+
+                if (selectedOption.equals("Estat de la central")) {
                     JOptionPane.showMessageDialog(panell, adaptador.getEstatActual());
-                }
-                else if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Quadern de bitàcola")){
+                } else if (selectedOption.equals("Quadern de bitàcola")){
                     textArea.setText(adaptador.getBitacolaCompleta());
-                }
-                else if (cmboxOpcionsVisualitzar.getSelectedItem().toString().equals("Incidències")){
+                } else if (selectedOption.equals("Incidències")){
                     JOptionPane.showMessageDialog(panell, adaptador.getIncidencies());
                 }
             }
